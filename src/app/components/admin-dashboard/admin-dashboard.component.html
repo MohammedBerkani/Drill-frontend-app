@@ -1,0 +1,31 @@
+<div class="container">
+    <!-- Employee list -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Project ID</th>
+          <th scope="col">Number</th>
+         </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of Projects  "  >
+          <th scope="row">{{project._id}}</th>
+          <td>{{project.number}}</td>
+             <td class="text-center edit-block">
+                <span class="edit" [routerLink]="['editProject/', project._id]">
+                  <button type="button" class="btn btn-success btn-sm">Edit</button>
+                </span>
+                </td>
+            </tr>
+        
+      </tbody>
+    </table>
+  </div>
+<div>
+    <span class="createProject" routerLink="newProject"  routerLinkActive="active">
+        <h3>New Project Space</h3>
+        <button type="button" class="btn btn-success btn-sm">Create</button>
+      </span>
+      
+
+</div>

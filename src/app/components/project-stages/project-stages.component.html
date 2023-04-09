@@ -1,0 +1,172 @@
+<div>
+<h3>  Project Stages Space</h3>
+<span class="projectStages" [routerLink]="['New']">
+    <button type="button" class="btn btn-success btn-sm"> generate Project Stages</button>
+  </span>
+</div>
+<div class="phases">
+<div>
+<h3>First Phase</h3>
+<table class="table table-bordered">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">casing grade</th>
+        <th scope="col">casing weight</th>
+        <th scope="col">casing state</th>
+        <th scope="col">cementing state</th>
+        <th scope="col">section hole size</th>
+        <th scope="col">section final depth</th>
+        <th scope="col">section depth (inprogress)</th>
+        
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let st of StageOne  ; "  >
+       
+        <td>{{st.casing.grade}}</td>
+        <td>{{st.casing.weight}}</td>
+        <td>{{st.casing.state}}</td>
+        <td>{{st.cementing.state}}</td>
+        <td>{{st.section.ConductorHoleSize}}</td>
+        <td>{{st.section.finalDepth}}</td>
+        <td>{{st.section.depthInProgress}}</td>
+       
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+<div>
+    <h3>Second Phase</h3>
+    <table class="table table-bordered">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">casing grade</th>
+            <th scope="col">casing weight</th>
+            <th scope="col">casing state</th>
+            <th scope="col">cementing state</th>
+            <th scope="col">section hole size</th>
+            <th scope="col">section final depth</th>
+            <th scope="col">section depth (inprogress)</th>
+            
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let st of StageTwo  ; "  >
+           
+            <td>{{st.casing.grade}}</td>
+            <td>{{st.casing.weight}}</td>
+            <td>{{st.casing.state}}</td>
+            <td>{{st.cementing.state}}</td>
+            <td>{{st.section.ConductorHoleSize}}</td>
+            <td>{{st.section.finalDepth}}</td>
+            <td>{{st.section.depthInProgress}}</td>
+           
+          </tr>
+          
+        </tbody>
+      </table>
+    </div><div>
+        <h3>Third Stage</h3>
+        <table class="table table-bordered">
+            <thead class="table-success">
+              <tr>
+                <th scope="col">casing grade</th>
+                <th scope="col">casing weight</th>
+                <th scope="col">casing state</th>
+                <th scope="col">cementing state</th>
+                <th scope="col">section hole size</th>
+                <th scope="col">section final depth</th>
+                <th scope="col">section depth (inprogress)</th>
+                
+              
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let st of StageThree  ; "  >
+               
+                <td>{{st.casing.grade}}</td>
+                <td>{{st.casing.weight}}</td>
+                <td>{{st.casing.state}}</td>
+                <td>{{st.cementing.state}}</td>
+                <td>{{st.section.ConductorHoleSize}}</td>
+                <td>{{st.section.finalDepth}}</td>
+                <td>{{st.section.depthInProgress}}</td>
+               
+              </tr>
+              
+            </tbody>
+          </table>
+        </div><div>
+            <h3>Last Phase</h3>
+            <table class="table table-bordered">
+                <thead class="table-success">
+                  <tr>
+                    <th scope="col">casing grade</th>
+                    <th scope="col">casing weight</th>
+                    <th scope="col">casing state</th>
+                    <th scope="col">cementing state</th>
+                    <th scope="col">section hole size</th>
+                    <th scope="col">section final depth</th>
+                    <th scope="col">section depth (inprogress)</th>
+                    
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let st of StageFour  ; "  >
+                   
+                    <td>{{st.casing.grade}}</td>
+                    <td>{{st.casing.weight}}</td>
+                    <td>{{st.casing.state}}</td>
+                    <td>{{st.cementing.state}}</td>
+                    <td>{{st.section.ConductorHoleSize}}</td>
+                    <td>{{st.section.finalDepth}}</td>
+                    <td>{{st.section.depthInProgress}}</td>
+                   
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            <span>
+                <span class="projectStages" [routerLink]="['edit']">
+                    <button type="button" class="btn btn-success btn-sm"> Edit</button>
+                  </span>
+                  
+            </span>
+            <div><h3> Operating Monitor</h3>
+    
+              <div *ngFor="let project of project"> 
+                
+              <div *ngIf="project.operated== true ">
+                <p *ngFor="let operator of Operator">   
+                  it  is  operated by {{operator.name}} <br>
+                  <app-button (btnclick)="Dismiss(operator)" text="Dismiss" ></app-button> 
+            
+                </p> 
+                     </div>
+              </div>
+            <table class="table table-bordered">
+              <thead class="table-success">
+                <tr>
+                  <th scope="col">DrillOperator Name</th>
+                  <th scope="col">Email</th>
+                 </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let operator of DrillOperators  "  >
+                  <td>{{operator.name}}</td>         
+                  <td>{{operator.email}}</td>
+              <td>    <app-button (btnclick)="Assign(operator)" text="Assign"></app-button>
+              </td>  </tr>
+                
+              </tbody>
+            </table>
+        
+
+
+
+</div>

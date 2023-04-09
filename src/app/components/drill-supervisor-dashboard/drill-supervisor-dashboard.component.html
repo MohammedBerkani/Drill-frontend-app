@@ -1,0 +1,45 @@
+<div class="container">
+    <!-- Employee list -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Number</th>
+          <th scope="col">Determined Time</th>
+          <th scope="col">contractor</th>
+          <th scope="col">Cellar Depth</th>
+          <th scope="col">Well Profile</th>
+          <th scope="col">Target Reservoir</th>
+          <th scope="col">Target Formation</th>
+          <th scope="col">Target Tolerance Shape</th>
+          <th scope="col">Td Formation Depth</th>
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pr of Project  ; "  >
+         
+          <td>{{pr.number}}</td>
+          <td>{{pr.determinedTime}}</td>
+          <td>{{pr.basic_info.contractor}}</td>
+          <td>{{pr.basic_info.cellarDepth}}</td>
+          <td>{{pr.basic_info.wellProfile}}</td>
+          <td>{{pr.basic_info.targetReservoir}}</td>
+          <td>{{pr.basic_info.targetFormation}}</td>
+          <td>{{pr.basic_info.targetToleranceShape}}</td>
+          <td>{{pr.basic_info.TdFormationDepth}}</td>
+       
+        </tr>
+        
+      </tbody>
+    </table>
+    <div  *ngFor="let pr of Project  ; ">
+      <h3>Project Stages Space</h3>
+
+      <span class="projectStages" [routerLink]="['Project', pr._id,'Stages']">
+        <button type="button" class="btn btn-success btn-sm"> Project Stages Space</button>
+      </span>
+      
+    </div>
+  </div>
+

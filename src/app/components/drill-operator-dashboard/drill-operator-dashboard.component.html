@@ -1,0 +1,32 @@
+<div class="container">
+    <!-- Employee list -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Number</th>
+          <th scope="col">Determined Time</th>
+          <th scope="col">Drill Superviser Name </th>
+          <th scope="col">Drill Superviser Email </th>
+         
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pr of Project  ; "  >
+         
+          <td>{{pr.number}}</td>
+          <td>{{pr.determinedTime}}</td>
+         </tr>
+        
+      </tbody>
+    </table>
+    <div  *ngFor="let pr of Project  ; ">
+      
+
+      <span class="projectStages" [routerLink]="[ 'project',pr._id ,'ProjectOperating']">
+        <button type="button" class="btn btn-success btn-sm"> Phases Monitoring</button>
+      </span>
+      
+    </div>
+  </div>
