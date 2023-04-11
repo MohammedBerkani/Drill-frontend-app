@@ -15,6 +15,7 @@ export class OperateStageFourComponent implements OnInit {
   submitted = false
   EditLastStageForm:FormGroup
   opSelect="pending"
+  opSelect2="pending"
  
 constructor(public fb: FormBuilder,
   private router: Router,
