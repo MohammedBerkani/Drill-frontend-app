@@ -11,22 +11,30 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./operate-stage-four.component.css']
 })
 export class OperateStageFourComponent implements OnInit {
-
+Stage:any
   submitted = false
   EditLastStageForm:FormGroup
   opSelect="pending"
   opSelect2="pending"
- 
+
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
     this.mainForm();
-  
+this.readStage() 
 }
 ngOnInit(): void {
-  
+
+}
+
+readStage(){
+    let id = this.actRoute.snapshot.paramMap.get('id2');
+  this.apiService.getLastStage(id).subscribe((data) => {
+    console.log(data)
+   this.Stage = data;
+  })
 }
 mainForm() {
  
@@ -65,10 +73,14 @@ onSubmit() {
   if (!this.EditLastStageForm.valid) {
     return false;
   } else {
+    
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
     return this.apiService.UpdateLastStageByOp(this.EditLastStageForm.value,id).subscribe({
+
+      
       error: (e) => {
+        
         console.log(e);
       },
     });

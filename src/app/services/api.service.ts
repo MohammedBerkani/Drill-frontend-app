@@ -202,8 +202,14 @@ UpdateLastStage(data:any,id): Observable<LastStage> {
 }
 UpdateLastStageByOp(data:any,id): Observable<LastStage> {
   let url = `${this.baseUri}/drillOperator/:id/Dashboard/Project/${id}/StageFour`;
-  console.log(data)
+ 
   return this.http.patch<LastStage>(url, data).pipe();
 
 }
+
+
+
+
+
+
 }

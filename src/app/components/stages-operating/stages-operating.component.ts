@@ -24,6 +24,7 @@ ngOnInit(): void {
   this.getStageTwo(id);
   this.getStageThree(id);
   this.getStageFour(id);
+  
 }
 getStageOne(id){
   this.apiService.getFirstStage(id).subscribe((data) => {
