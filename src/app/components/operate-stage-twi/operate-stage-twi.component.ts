@@ -11,22 +11,30 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./operate-stage-twi.component.css']
 })
 export class OperateStageTwiComponent implements OnInit {
-
+Stage:any
   submitted = false
   EditSecondStageForm:FormGroup
   opSelect="pending"
- 
+  opSelect2="pending"
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
     this.mainForm();
-  
+  this.readStage()
 }
 ngOnInit(): void {
   
 }
+readStage(){
+  let id = this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getSecondStage(id).subscribe((data) => {
+  console.log(data)
+ this.Stage = data;
+})
+}
+
 mainForm() {
  
   this.EditSecondStageForm = this.fb.group({

@@ -11,10 +11,11 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./operate-stage-three.component.css']
 })
 export class OperateStageThreeComponent implements OnInit{
-
+Stage:any
   submitted = false
   EditThirdStageForm:FormGroup
   opSelect="pending"
+  opSelect2="pending"
  
 constructor(public fb: FormBuilder,
   private router: Router,
@@ -22,11 +23,19 @@ constructor(public fb: FormBuilder,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
     this.mainForm();
-  
+ this.readStage() 
 }
 ngOnInit(): void {
   
 }
+readStage(){
+  let id = this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getThirdStage(id).subscribe((data) => {
+  console.log(data)
+ this.Stage = data;
+})
+}
+
 mainForm() {
  
   this.EditThirdStageForm = this.fb.group({

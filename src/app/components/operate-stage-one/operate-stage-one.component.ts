@@ -15,6 +15,9 @@ export class OperateStageOneComponent  implements OnInit{
   submitted = false
   EditFirstStageForm:FormGroup
   opSelect="pending"
+  opSelect2="pending"
+  Stage:any;
+
  
 constructor(public fb: FormBuilder,
   private router: Router,
@@ -22,11 +25,19 @@ constructor(public fb: FormBuilder,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
     this.mainForm();
-  
+  this.readStage()
 }
 ngOnInit(): void {
   
 }
+readStage(){
+  let id = this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getFirstStage(id).subscribe((data) => {
+  console.log(data)
+ this.Stage = data;
+})
+}
+
 mainForm() {
  
   this.EditFirstStageForm = this.fb.group({
