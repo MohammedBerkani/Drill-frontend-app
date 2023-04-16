@@ -1,8 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
       
-      <div class="card-body">
+      <div class="card-body" *ngFor="let st of Stage">
         <h2>First Phase</h2>
+
+<div *ngIf="st.CompletedStage == false ; else hide">        
         <form [formGroup]="EditFirstStageForm" (ngSubmit)="onSubmit()">
           <div formGroupName="casing">
           
@@ -28,7 +30,7 @@
           </div>
           <div formGroupName="section">
             <h3>Drilling Section</h3>
-            <div class="form-group" *ngFor="let st of Stage">
+            <div class="form-group">
 
               <span *ngIf="st.section.isFinished == true ; else able">
                         
@@ -58,8 +60,16 @@
             </button>
           </div>
         </form>
+       
       </div>
+    
+      </div>
+      <ng-template #hide>
+        <h3>the stage is finished</h3>                  
+        
+  </ng-template>         
+  
     </div>
-    <!-- form card register -->
+  <!-- form card register -->
   </div>
   

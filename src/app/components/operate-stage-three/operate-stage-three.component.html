@@ -1,8 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
       
-      <div class="card-body">
+      <div class="card-body" *ngFor="let st of Stage">
         <h2>Third Phase</h2>
+        <div *ngIf="st.previousFinishedStage == true ; else pending">
+       
+        <div *ngIf="st.CompletedStage == false ; else hide">
         <form [formGroup]="EditThirdStageForm" (ngSubmit)="onSubmit()">
           <div formGroupName="casing">
           
@@ -60,6 +63,16 @@
         </form>
       </div>
     </div>
-    <!-- form card register -->
+    <ng-template #hide>
+      <h3>the stage is finished</h3>                  
+      
+</ng-template>         
+</div>
+<ng-template #pending>
+  <h3>the stage is pending</h3>                  
+  
+</ng-template>         
+
+  </div>  <!-- form card register -->
   </div>
   
