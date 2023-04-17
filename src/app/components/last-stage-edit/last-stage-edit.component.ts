@@ -41,7 +41,6 @@ mainForm() {
    section:this.fb.group({
     productionHoleSize:['', ],
     finalDepth:['', ],
-    depthInProgress:['', ]
    })
 });
 }

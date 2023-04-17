@@ -40,8 +40,7 @@ mainForm() {
    section:this.fb.group({
     ConductorHoleSize:['', ],
     finalDepth:['', ],
-    depthInProgress:['', ]
-   })
+     })
 });
 }
 get myForm() {

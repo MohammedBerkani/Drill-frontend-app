@@ -40,7 +40,6 @@ mainForm() {
    section:this.fb.group({
     surfaceHoleSize:['', ],
     finalDepth:['', ],
-    depthInProgress:['', ]
    })
 });
 }
