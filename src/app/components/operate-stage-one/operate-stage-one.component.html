@@ -6,6 +6,59 @@
 
 <div *ngIf="st.CompletedStage == false ; else hide">        
         <form [formGroup]="EditFirstStageForm" (ngSubmit)="onSubmit()">
+          
+            <div *ngIf="st.initialized == false ; else not" >
+             <h3>Initial Date</h3>
+             <label for="start">
+              Enter the Date:
+          </label>
+        
+          <input type="date" formControlName="initialDate"  useValueAsLocalDate
+              >
+        
+        </div>
+        <ng-template #not>
+                        
+          <h3>Initial Date</h3>
+          <label for="start">
+           Enter the Date:
+       </label>
+     
+       <input type="date"  formControlName="initialDate" [attr.disabled]="true" useValueAsLocalDate
+           >
+    
+ </ng-template> 
+        <div *ngIf="st.section.isFinished== true && st.casing.state=='completed'; else hideDate ">
+          <h3>Final Date</h3>
+          <label for="start">
+           Enter the Date:
+       </label>
+     
+       <input type="date" formControlName="finalDate"  useValueAsLocalDate
+           >
+     
+     </div>
+     <ng-template #hideDate>
+                        
+      <h3>Final Date</h3>
+      <label for="start">
+       Enter the Date:
+   </label>
+ 
+   <input type="date" disabled  useValueAsLocalDate
+       >
+
+</ng-template> 
+      
+     
+     
+
+        
+        
+
+        
+        
+        
           <div formGroupName="casing">
           
        <div>
@@ -17,6 +70,7 @@
             </select>
           </div>
           </div>
+
           <div formGroupName="cementing">
             <h3>Cementing</h3>
         <div>

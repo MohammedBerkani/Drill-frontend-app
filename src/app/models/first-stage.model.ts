@@ -1,5 +1,6 @@
 export class FirstStage {
 _id:string
+initialDate:Date
     projectId:string;
 casing:{
         weight:number,

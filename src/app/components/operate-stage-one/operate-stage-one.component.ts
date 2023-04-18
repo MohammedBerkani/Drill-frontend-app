@@ -41,6 +41,9 @@ this.apiService.getFirstStage(id).subscribe((data) => {
 mainForm() {
  
   this.EditFirstStageForm = this.fb.group({
+    initialDate:['', ],
+    finalDate:['', ],
+ 
   casing:this.fb.group({
     state:['', ],
    }),

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DateValueAccessor, DateValueAccessorModule } from 'angular-date-value-accessor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ThirdStageComponent } from './components/third-stage/third-stage.compon
 import { LastStageComponent } from './components/last-stage/last-stage.component';
 import { DrillOperatorComponent } from './components/drill-operator/drill-operator.component';
 import { DrillOperatorDashboardComponent } from './components/drill-operator-dashboard/drill-operator-dashboard.component';
+import { LocalDateValueAccessor, LocalDateValueAccessorModule } from 'angular-date-value-accessor';
 
 import { NewStagesComponent } from './components/new-stages/new-stages.component';
 import { ProjectStagesEditComponent } from './components/project-stages-edit/project-stages-edit.component';
@@ -72,7 +74,8 @@ import { OperateStageFourComponent } from './components/operate-stage-four/opera
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    DateValueAccessor,DateValueAccessorModule,
+    HttpClientModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
