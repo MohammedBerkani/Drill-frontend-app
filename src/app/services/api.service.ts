@@ -54,6 +54,14 @@ getOperator(id){
     return this.http.get(url).pipe();
 
 }
+getSupervisor(id){
+  console.log(id)
+  let url = `${this.baseUri}/drillOperator/${id}/drillSupervisor`;
+
+    return this.http.get(url).pipe();
+
+}
+
 getProjects(id){
   console.log(id)
   let url = `${this.baseUri}/admin/${id}/Dashboard/`;

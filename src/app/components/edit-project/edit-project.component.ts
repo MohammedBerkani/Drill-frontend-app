@@ -57,16 +57,15 @@ getOneDriller(){
 
 
   Assign(driller:any){
-console.log("qsd")
     let id_S=driller._id
     let id_P = this.actRoute.snapshot.paramMap.get('id2');
-        console.log(id_P,id_S)
- 
+      
         
-        console.log(driller,)
       let url = `${this.baseUri}/admin/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
       this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
-      return  window.location.reload();
+       
+      return window.location.reload(); 
+       
        
   
   }

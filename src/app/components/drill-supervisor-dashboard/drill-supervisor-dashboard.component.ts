@@ -27,9 +27,6 @@ readProject(id){
 
   })    
 }
-ShowLocation(lon,lat){
-
-}
 
 
 

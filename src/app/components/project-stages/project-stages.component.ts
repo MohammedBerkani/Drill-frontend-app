@@ -57,13 +57,17 @@ Assign(operator:any){
   console.log("qsd")
       let id_S=operator._id
       let id_P = this.actRoute.snapshot.paramMap.get('id2');
-          console.log(id_P,id_S)
+      let id_sup = this.actRoute.snapshot.paramMap.get('id');
+      
+      console.log(id_P,id_S)
    
           
           console.log(operator,)
-        let url = `${this.baseUri}/drillSupervisor/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
+        let url = `${this.baseUri}/drillSupervisor/${id_sup}/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
         this.http.patch(url, {operating:true}, { headers: this.headers }).subscribe();
-              return  window.location.reload();
+        
+              return window.location.reload()
+        
   
          
     
@@ -74,13 +78,16 @@ Assign(operator:any){
     let id_S=operator._id
     console.log(id_S)
     let id_P = this.actRoute.snapshot.paramMap.get('id2');
+    let id_sup = this.actRoute.snapshot.paramMap.get('id');
        
       console.log(operator)
-      let url = `${this.baseUri}/drillSupervisor/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
+      let url = `${this.baseUri}/drillSupervisor/${id_sup}/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
       this.http.patch(url, {operating:false}, { headers: this.headers }).subscribe()
-  
-      return  window.location.reload();
-       
+    
+     
+      return  window.location.reload(); 
+     
+            
         
   
   

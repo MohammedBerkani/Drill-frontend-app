@@ -69,6 +69,10 @@ onSubmit() {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
     return this.apiService.addFirstStage(this.FirstStageForm.value,id).subscribe({
+      complete: () => {
+        console.log('stage successfully created!'),
+          this.ngZone.run(() => this.router.navigate(['Stages']))
+      },
       error: (e) => {
         console.log(e);
       },

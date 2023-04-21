@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./drill-operator-dashboard.component.css']
 })
 export class DrillOperatorDashboardComponent implements OnInit{
+Supervisor:any
   Project:any
   constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) { 
  }
@@ -15,6 +16,7 @@ export class DrillOperatorDashboardComponent implements OnInit{
 ngOnInit(): void {
   let id = this.actRoute.snapshot.paramMap.get('id');
   this.readProject(id);
+  this.readSupervisor(id);
  
 
 }
@@ -23,6 +25,14 @@ readProject(id){
     console.log(data)
    this.Project = data;
   })    
+  
+}
+readSupervisor(id){
+  this.apiService.getSupervisor(id).subscribe((data) => {
+    console.log(data)
+   this.Supervisor = data;
+  })    
+  
 }
 
 
