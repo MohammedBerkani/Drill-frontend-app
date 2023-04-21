@@ -13,11 +13,8 @@ export class Project {
     targetFormation?:string,
     targetToleranceShape?:string,  
     TdFormationDepth?:string,
-
-//     surfaceCordinate?:{
-// Type:string,
-// coordinates:[number]
-//     }
+    SurfaceLontitude?:number,
+    SurfaceLatitude?:number,
       
 };
 

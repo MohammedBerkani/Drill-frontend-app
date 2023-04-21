@@ -36,9 +36,12 @@ import { OperateStageOneComponent } from './components/operate-stage-one/operate
 import { OperateStageTwiComponent } from './components/operate-stage-twi/operate-stage-twi.component';
 import { OperateStageThreeComponent } from './components/operate-stage-three/operate-stage-three.component';
 import { OperateStageFourComponent } from './components/operate-stage-four/operate-stage-four.component';
+import { MapComponent } from './components/map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
+   
     AppComponent,
     AdminComponent,
     AdminRegComponent,
@@ -67,7 +70,8 @@ import { OperateStageFourComponent } from './components/operate-stage-four/opera
      OperateStageOneComponent,
      OperateStageTwiComponent,
      OperateStageThreeComponent,
-     OperateStageFourComponent
+     OperateStageFourComponent,
+     MapComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,8 @@ import { OperateStageFourComponent } from './components/operate-stage-four/opera
     FormsModule,
     DateValueAccessor,DateValueAccessorModule,
     HttpClientModule,
+    LeafletModule
+   
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

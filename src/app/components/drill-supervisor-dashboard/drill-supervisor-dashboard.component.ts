@@ -8,7 +8,9 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./drill-supervisor-dashboard.component.css']
 })
 export class DrillSupervisorDashboardComponent implements OnInit {
+  
 Project:any
+
   constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) { 
  }
   
@@ -22,9 +24,12 @@ readProject(id){
   this.apiService.recieveProject(id).subscribe((data) => {
     console.log(data)
    this.Project = data;
+
   })    
 }
+ShowLocation(lon,lat){
 
+}
 
 
 

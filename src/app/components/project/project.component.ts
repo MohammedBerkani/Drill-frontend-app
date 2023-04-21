@@ -30,7 +30,7 @@ export class ProjectComponent implements OnInit {
    
     this.ProjectForm = this.fb.group({
       number: ['', ],
-
+     
     determinedTime: ['', ],
     basic_info:this.fb.group({
       contractor:['', ],
@@ -41,16 +41,11 @@ export class ProjectComponent implements OnInit {
       targetFormation:['', ],
       targetToleranceShape:['', ],  
       TdFormationDepth:['', ],
+      SurfaceLontitude:['', ],
+      SurfaceLatitude:['', ],
+    }),
 
-
-      surfaceCordinate:this.fb.group({
-        Type:['', ],}),
-       
-        
-        
-
-     })
-  });
+    });
   }
   get myForm() {
     return this.ProjectForm.controls;
