@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-third-stage',
@@ -14,17 +15,25 @@ export class ThirdStageComponent  implements OnInit{
   submitted = false
   ThirdStageForm:FormGroup
   opSelect="pending"
- 
+ project:any
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService
-  ,private actRoute: ActivatedRoute){
+  ,private actRoute: ActivatedRoute,private location: Location){
     this.mainForm();
-  
+  this.readProject();
 }
 ngOnInit(): void {
   
+}
+readProject(){
+  let id = this.actRoute.snapshot.paramMap.get('id');
+  console.log(id)
+this.apiService.recieveProject(id).subscribe((data) => {
+  console.log(data)
+ this.project= data;
+})
 }
 mainForm() {
  
@@ -69,6 +78,11 @@ onSubmit() {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
     return this.apiService.addThirdStage(this.ThirdStageForm.value,id).subscribe({
+      complete: () => {
+        console.log('stage successfully created!'),
+        this.location.back()
+
+      },
       error: (e) => {
         console.log(e);
       },

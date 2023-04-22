@@ -1,8 +1,9 @@
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
-      
-      <div class="card-body">
+      <div class="card-body"*ngFor="let pr of project">
         <h2>Second Phase</h2>
+        <div *ngIf="pr.secondStageGn== false ; else hide">        
+
         <form [formGroup]="SecondStageForm" (ngSubmit)="onSubmit()">
           <div formGroupName="casing">
             <h3>Casing</h3>
@@ -58,6 +59,11 @@
           </div>
         </form>
       </div>
+      <ng-template #hide>
+        <h3>the stage is generated</h3>                  
+        
+  </ng-template>  
+        </div>
     </div>
     <!-- form card register -->
   </div>

@@ -52,7 +52,10 @@
             <th scope="col">section hole size</th>
             <th scope="col">section final depth</th>
             <th scope="col">section depth (inprogress)</th>
-            
+            <th scope="col">initialization date </th>
+            <th scope="col">completion date </th>
+          
+                
           
           </tr>
         </thead>
@@ -66,7 +69,9 @@
             <td>{{st.section.ConductorHoleSize}}</td>
             <td>{{st.section.finalDepth}}</td>
             <td>{{st.section.depthInProgress}}</td>
-           
+            <td>{{st.initialDate | date : "dd.MM.y"}}</td>
+            <td>{{st.finalDate | date : "dd.MM.y"}}</td>
+               
           </tr>
           
         </tbody>
@@ -83,7 +88,10 @@
                 <th scope="col">section hole size</th>
                 <th scope="col">section final depth</th>
                 <th scope="col">section depth (inprogress)</th>
-                
+                <th scope="col">initialization date </th>
+                <th scope="col">completion date </th>
+              
+                        
               
               </tr>
             </thead>
@@ -97,7 +105,9 @@
                 <td>{{st.section.ConductorHoleSize}}</td>
                 <td>{{st.section.finalDepth}}</td>
                 <td>{{st.section.depthInProgress}}</td>
-               
+                <td>{{st.initialDate | date : "dd.MM.y"}}</td>
+                <td>{{st.finalDate | date : "dd.MM.y"}}</td>
+                       
               </tr>
               
             </tbody>
@@ -114,7 +124,10 @@
                     <th scope="col">section hole size</th>
                     <th scope="col">section final depth</th>
                     <th scope="col">section depth (inprogress)</th>
-                    
+                    <th scope="col">initialization date </th>
+                    <th scope="col">completion date </th>
+                  
+                                
                   
                   </tr>
                 </thead>
@@ -128,7 +141,9 @@
                     <td>{{st.section.ConductorHoleSize}}</td>
                     <td>{{st.section.finalDepth}}</td>
                     <td>{{st.section.depthInProgress}}</td>
-                   
+                    <td>{{st.initialDate | date : "dd.MM.y"}}</td>
+                    <td>{{st.finalDate | date : "dd.MM.y"}}</td>
+                               
                   </tr>
                   
                 </tbody>
@@ -140,6 +155,13 @@
                   </span>
                   
             </span>
+            <div>
+              <h3>Project Progress</h3>
+              <span *ngFor="let project of project">
+                <p>the progress is {{project.ProjectProgress}} %</p>
+              </span>
+              
+            </div>
             <div><h3> Operating Monitor</h3>
     
               <div *ngFor="let project of project"> 

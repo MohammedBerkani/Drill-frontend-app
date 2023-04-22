@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { SecondStage } from 'src/app/models/second-stage.model';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-second-stage',
@@ -12,6 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./second-stage.component.css']
 })
 export class SecondStageComponent implements OnInit {
+  project:any
   submitted = false
   SecondStageForm:FormGroup
   opSelect="pending"
@@ -20,12 +22,21 @@ constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService
-  ,private actRoute: ActivatedRoute){
+  ,private actRoute: ActivatedRoute,
+  private location: Location){
     this.mainForm();
+    this.readProject()
   
 }
 ngOnInit(): void {
   
+}
+readProject(){
+  let id = this.actRoute.snapshot.paramMap.get('id');
+
+this.apiService.recieveProject(id).subscribe((data) => {
+ this.project= data;
+})
 }
 mainForm() {
  
@@ -70,6 +81,11 @@ onSubmit() {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
     return this.apiService.addSecondStage(this.SecondStageForm.value,id).subscribe({
+      complete: () => {
+        console.log('stage successfully created!'),
+        this.location.back()
+
+      },
       error: (e) => {
         console.log(e);
       },

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-first-stage',
@@ -15,16 +16,26 @@ export class FirstStageComponent implements OnInit {
   FirstStageForm:FormGroup
   opSelect="pending"
   opSelect2="pending"
+  project:any
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService
-  ,private actRoute: ActivatedRoute){
+  ,private actRoute: ActivatedRoute,
+  private location: Location){
     this.mainForm();
-  
+  this.readproject()
 }
 ngOnInit(): void {
   
+}
+readproject(){
+  let id = this.actRoute.snapshot.paramMap.get('id');
+  console.log(id)
+this.apiService.recieveProject(id).subscribe((data) => {
+  console.log(data)
+ this.project= data;
+})
 }
 mainForm() {
  
@@ -71,7 +82,8 @@ onSubmit() {
     return this.apiService.addFirstStage(this.FirstStageForm.value,id).subscribe({
       complete: () => {
         console.log('stage successfully created!'),
-          this.ngZone.run(() => this.router.navigate(['Stages']))
+        this.location.back()
+
       },
       error: (e) => {
         console.log(e);
