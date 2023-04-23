@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ProjectComponent implements OnInit {
   submitted = false
-    ProjectForm:FormGroup
+  ProjectForm:FormGroup
   
    
   constructor(public fb: FormBuilder,
@@ -29,20 +29,23 @@ export class ProjectComponent implements OnInit {
   mainForm() {
    
     this.ProjectForm = this.fb.group({
-      number: ['', ],
+      number: ['',Validators.required ],
      
     determinedTime: ['', ],
     basic_info:this.fb.group({
-      contractor:['', ],
-      cellarDepth:['', ],
-      wellProfile:['', ],
+      contractor:['',Validators.required ],
+      cellarDepth:['',Validators.required ],
+      wellProfile:['',Validators.required ],
 
-      targetReservoir:['', ],    
-      targetFormation:['', ],
-      targetToleranceShape:['', ],  
-      TdFormationDepth:['', ],
-      SurfaceLontitude:['', ],
-      SurfaceLatitude:['', ],
+      targetReservoir:['',Validators.required ],    
+      targetFormation:['',Validators.required] ,
+      targetToleranceShape:['', Validators.required],  
+      TdFormationDepth:['',Validators.required] ,
+      SurfaceLontitude:['',Validators.required] ,
+      SurfaceLatitude:['',Validators.required] ,
+      TargetLontitude:['',Validators.required] ,
+      TargetLatitude:['',Validators.required] ,
+   
     }),
 
     });
@@ -50,21 +53,9 @@ export class ProjectComponent implements OnInit {
   get myForm() {
     return this.ProjectForm.controls;
   }
-  errorMgmt(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(() => {
-      return errorMessage;
-    });
+  get basicInfo(){
+    return this.ProjectForm.get('basic_info') as FormGroup;
   }
-  
   onSubmit() {
     this.submitted = true;
     if (!this.ProjectForm.valid) {

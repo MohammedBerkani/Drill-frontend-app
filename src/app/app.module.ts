@@ -8,7 +8,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminRegComponent } from './components/admin-reg/admin-reg.component';
 import { ApiService } from './services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './components/project/project.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DrillSupervisorComponent } from './components/drill-supervisor/drill-supervisor.component';
@@ -38,6 +38,7 @@ import { OperateStageThreeComponent } from './components/operate-stage-three/ope
 import { OperateStageFourComponent } from './components/operate-stage-four/operate-stage-four.component';
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ErrorInterceptorInterceptor } from './error-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     LeafletModule
    
   ],
-  providers: [ApiService],
+  providers: [ApiService,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true}  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

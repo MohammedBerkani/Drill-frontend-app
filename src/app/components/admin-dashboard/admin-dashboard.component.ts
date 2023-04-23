@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AdminDashboardComponent implements OnInit {
  
-  Projects:any = [];
+  Projects:any ;
   constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) { 
   
 

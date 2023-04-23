@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Admin } from '../models/admin.model';
 import { Project } from '../models/project.model';
 import { DrillSupervisor } from '../models/drill-supervisor.model';
@@ -9,6 +9,7 @@ import { FirstStage } from '../models/first-stage.model';
 import { SecondStage } from '../models/second-stage.model';
 import { LastStage } from '../models/last-stage.model';
 import { DrillOperator } from '../models/drill-operator.model';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +31,17 @@ export class ApiService {
 addAdmin(data:any): Observable<Admin> {
     let url = `${this.baseUri}/admin/register`;
 
-    return this.http.post(url, data).pipe();
+    return this.http.post(url, data).pipe(catchError(this.errorMgmt));
  
 }
-getProject(id){
+getProject(id): Observable<Project> {
   console.log(id)
   let url = `${this.baseUri}/admin/:id/Dashboard/Project/${id}`;
 
-    return this.http.get(url).pipe();
+    return this.http.get(url).pipe(  map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt));
 
 }
 getDriller(id){
@@ -62,11 +66,15 @@ getSupervisor(id){
 
 }
 
-getProjects(id){
+getProjects(id):Observable<Project>{
   console.log(id)
   let url = `${this.baseUri}/admin/${id}/Dashboard/`;
 
-    return this.http.get(url).pipe();
+    return this.http.get(url).pipe(map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt));
+
 }
 
 getFirstStage(id){
@@ -154,7 +162,10 @@ addLastStage(data:any,id):Observable<LastStage> {
 addProject(data:any,id): Observable<Project> {
   let url = `${this.baseUri}/admin/${id}/NewProject`;
   console.log(data)
-  return this.http.post<Project>(url, data).pipe();
+  return this.http.post<Project>(url, data).pipe(
+  
+    
+    catchError(this.errorMgmt));
 
 }
 
@@ -215,7 +226,21 @@ UpdateLastStageByOp(data:any,id): Observable<LastStage> {
 
 }
 
-
+errorMgmt(error: HttpErrorResponse) {
+  let errorMessage = '';
+  if (error.error instanceof ErrorEvent) {
+    // Get client-side error
+    errorMessage = error.error.message;
+  } else {
+    // Get server-side error
+    console.log(error.message)
+    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  }
+  console.log(errorMessage);
+  return throwError(() => {
+    return errorMessage;
+  });
+}
 
 
 

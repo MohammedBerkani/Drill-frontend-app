@@ -5,6 +5,7 @@
         <tr>
           <th scope="col">Number</th>
           <th scope="col">Progress</th>
+          <th scope="col">Formulation Date</th>
         
          </tr>
       </thead>
@@ -12,7 +13,8 @@
         <tr *ngFor="let project of Projects  "  >
           <td>{{project.number}}</td>
           <td>{{project.ProjectProgress}}%</td>
-         
+          <td>{{project.createdAt | date : "dd.MM.y"}}</td>
+             
              <td class="text-center edit-block">
                 <span class="edit" [routerLink]="['editProject/', project._id]">
                   <button type="button" class="btn btn-success btn-sm">Edit</button>
