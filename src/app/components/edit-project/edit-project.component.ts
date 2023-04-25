@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
 import { DrillSupervisor } from 'src/app/models/drill-supervisor.model';
+import { Project } from 'src/app/models/project.model';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class EditProjectComponent implements OnInit {
     ProjectForm:FormGroup
     baseUri: string = 'http://localhost:2000/api';
     headers = new HttpHeaders().set('Content-Type', 'application/json');  
-  project:any
+  project:Project
   OneDriller:any
    constructor(public fb: FormBuilder,
     private router: Router,
@@ -25,30 +26,49 @@ export class EditProjectComponent implements OnInit {
     private http:HttpClient,
     private apiService: ApiService
     ,private actRoute: ActivatedRoute){
-      this.mainForm();
     
   }
   ngOnInit(): void {
- 
     this.ShowSupervisingMonitor()
-    this.getOneProject()
     this.getOneDriller()
+
+    this.updateProject()
+ this.getOneProject()
+
+     this.ProjectForm =  this.fb.group({
+      number: ['', ],
+
+    determinedTime: ['', ],
+    basic_info:this.fb.group({
+      contractor:['', ],
+      cellarDepth:['', ],
+      wellProfile:['', ],
+
+      targetReservoir:['', ],    
+      targetFormation:['', ],
+      targetToleranceShape:['', ],  
+      TdFormationDepth:['', ],
+      SurfaceLontitude:['',] ,
+      SurfaceLatitude:['',] ,
+      TargetLontitude:['',] ,
+      TargetLatitude:['',] ,
+  
+
+        
+        
+
+     })
+  });
+   
 
   
   }
-
-getOneProject(){
- let id= this.actRoute.snapshot.paramMap.get('id2');
- this.apiService.getProject(id).subscribe((data) => {
-  this.project=data   
-  console.log(data)
- });
-}
+ 
 getOneDriller(){
   let id= this.actRoute.snapshot.paramMap.get('id2');
 
   this.apiService.getDriller(id).subscribe((data) => {
-
+console.log(data)
    this.OneDriller=data   
   });
  }
@@ -62,9 +82,9 @@ getOneDriller(){
       
         
       let url = `${this.baseUri}/admin/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
-      this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
        
-      return window.location.reload(); 
+      return this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
+
        
        
   
@@ -93,7 +113,8 @@ getOneDriller(){
      this.DrillSupervisors = data;
     })    
   }
-  mainForm() {
+  
+  updateProject() {
    
     this.ProjectForm = this.fb.group({
       number: ['', ],
@@ -108,11 +129,12 @@ getOneDriller(){
       targetFormation:['', ],
       targetToleranceShape:['', ],  
       TdFormationDepth:['', ],
+      SurfaceLontitude:['',] ,
+      SurfaceLatitude:['',] ,
+      TargetLontitude:['',] ,
+      TargetLatitude:['',] ,
+  
 
-
-      surfaceCordinate:this.fb.group({
-        Type:['', ],}),
-       
         
         
 
@@ -122,6 +144,41 @@ getOneDriller(){
   get myForm() {
     return this.ProjectForm.controls;
   }
+  getOneProject(){
+    let id= this.actRoute.snapshot.paramMap.get('id2');
+    this.apiService.getProject(id).subscribe((data) => {
+
+      console.log(data['basic_info']['cellarDepth'])
+     this.ProjectForm.setValue({
+     
+   
+       number:data['number'],
+       determinedTime:data['determinedTime'],   
+      basic_info:{
+       contractor:data['basic_info']['contractor'],
+       cellarDepth:data['basic_info']['cellarDepth' ],
+       wellProfile:data['basic_info']['wellProfile' ],
+       targetReservoir:data['basic_info']['targetReservoir' ],    
+
+       targetFormation:data['basic_info']['targetFormation' ],
+         targetToleranceShape:data['basic_info']['targetToleranceShape' ],  
+         TdFormationDepth:data['basic_info']['TdFormationDepth' ],
+         SurfaceLontitude:data['basic_info']['SurfaceLontitude' ] ,
+         SurfaceLatitude:data['basic_info']['SurfaceLatitude' ] ,
+         TargetLontitude:data['basic_info']['TargetLontitude' ] ,
+         TargetLatitude:data['basic_info']['TargetLatitude' ] ,
+     
+   
+   
+   
+   
+   }
+     });
+     this.project=data
+ 
+    });
+   }
+   
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -142,18 +199,13 @@ getOneDriller(){
     if (!this.ProjectForm.valid) {
       return false;
     } else {
-      let id1 = this.actRoute.snapshot.paramMap.get('id1');
       let id2 = this.actRoute.snapshot.paramMap.get('id2');
+      this.apiService.UpdateProject(this.ProjectForm.value,id2).subscribe({
      
-      return this.apiService.UpdateProject(this.ProjectForm.value,id1,id2).subscribe({
-        complete: () => {
-          console.log('Project successfully created!'),
-            this.ngZone.run(() => this.router.navigate(["admin",id1,"Dashboard"]))
-        },
-        error: (e) => {
-          console.log(e);
-        },
       });
-    }
+
+      return  window.location.reload();
+       
+       }
   }
   }

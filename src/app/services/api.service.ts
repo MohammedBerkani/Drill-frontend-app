@@ -9,7 +9,7 @@ import { FirstStage } from '../models/first-stage.model';
 import { SecondStage } from '../models/second-stage.model';
 import { LastStage } from '../models/last-stage.model';
 import { DrillOperator } from '../models/drill-operator.model';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -164,13 +164,12 @@ addProject(data:any,id): Observable<Project> {
   console.log(data)
   return this.http.post<Project>(url, data).pipe(
   
-    
-    catchError(this.errorMgmt));
+    );
 
 }
 
-UpdateProject(data:any,id1,id2): Observable<Project> {
-  let url = `${this.baseUri}/admin/${id1}/Dashboard/Project/${id2}`;
+UpdateProject(data:any,id2): Observable<Project> {
+  let url = `${this.baseUri}/admin/:id/Dashboard/Project/${id2}`;
   console.log(data)
   return this.http.patch<Project>(url, data).pipe();
 
@@ -233,7 +232,7 @@ errorMgmt(error: HttpErrorResponse) {
     errorMessage = error.error.message;
   } else {
     // Get server-side error
-    console.log(error.message)
+    
     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
   }
   console.log(errorMessage);
