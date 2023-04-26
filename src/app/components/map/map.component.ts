@@ -38,7 +38,7 @@ export class MapComponent  implements AfterViewInit{
    }
    readProject(id){
     console.log(id)
-    this.apiService.getProject(id).subscribe((data) => {
+    this.apiService.recieveProjectForMap(id).subscribe((data) => {
   console.log(data)
   const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,

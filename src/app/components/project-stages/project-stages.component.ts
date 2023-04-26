@@ -32,10 +32,11 @@ this.getOneOperator()
 this.getOneProject()
 }
 getOneProject(){
-  let id= this.actRoute.snapshot.paramMap.get('id2');
-  this.apiService.getProject(id).subscribe((data) => {
+  let id= this.actRoute.snapshot.paramMap.get('id');
+  this.apiService.recieveProject(id).subscribe((data) => {
+    console.log(data)
    this.project=data   
-   console.log(data)
+
   });
  }
  getOneOperator(){

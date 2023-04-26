@@ -34,6 +34,16 @@ addAdmin(data:any): Observable<Admin> {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
  
 }
+
+// getProjectBySv(id): Observable<Project>{ console.log(id)
+//   let url = `${this.baseUri}/drillSupervisor/${id}/Dashboard/Project`;
+
+//     return this.http.get(url).pipe(  map((res: Response) => {
+//       return res || {};
+//     }),
+//     catchError(this.errorMgmt));
+
+// }
 getProject(id): Observable<Project> {
   console.log(id)
   let url = `${this.baseUri}/admin/:id/Dashboard/Project/${id}`;
@@ -101,6 +111,12 @@ getLastStage(id){
 recieveProject(id){
   console.log(id)
   let url = `${this.baseUri}/drillSupervisor/${id}/Dashboard/`;
+
+    return this.http.get(url).pipe();
+}
+recieveProjectForMap(id){
+  console.log(id)
+  let url = `${this.baseUri}/drillSupervisor/${id}/Dashboard/ProjectMap`;
 
     return this.http.get(url).pipe();
 }

@@ -76,17 +76,15 @@ onSubmit() {
     return false;
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
-   
-    return this.apiService.addThirdStage(this.ThirdStageForm.value,id).subscribe({
-      complete: () => {
-        console.log('stage successfully created!'),
-        this.location.back()
-
-      },
+  
+    this.apiService.addThirdStage(this.ThirdStageForm.value,id).subscribe({
       error: (e) => {
         console.log(e);
       },
     });
+        return window.location.reload();
+
+    
   }
 }
 }

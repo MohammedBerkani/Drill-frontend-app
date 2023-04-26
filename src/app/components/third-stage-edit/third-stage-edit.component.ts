@@ -20,32 +20,83 @@ constructor(public fb: FormBuilder,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
-    this.mainForm();
+    
   
 }
 ngOnInit(): void {
+  this.updateStage()
+  this.getStage()
   
-}
-mainForm() {
- 
   this.EditThirdStageForm = this.fb.group({
-  casing:this.fb.group({
-    weight:['', ],
-    grade:['', ],
-    state:['', ],
-   }),
-   cementing:this.fb.group({
-    state:['', ],
-   }),
-   section:this.fb.group({
-    intermediateHoleSize:['', ],
-    finalDepth:['', ],
-   })
-});
+    casing:this.fb.group({
+      weight:['', ],
+      grade:['', ],
+      state:['', ],
+     }),
+     cementing:this.fb.group({
+      state:['', ],
+     }),
+     section:this.fb.group({
+      intermediateHoleSize:['', ],
+      finalDepth:['', ],
+     })
+  });
+
 }
+ 
 get myForm() {
   return this.EditThirdStageForm.controls;
 }
+
+getStage(){
+  let id= this.actRoute.snapshot.paramMap.get('id2');
+  this.apiService.getThirdStage(id).subscribe((data) => {
+  console.log(data)
+    this.EditThirdStageForm.setValue({
+      casing:{
+        weight:data['casing']['weight'],
+        grade:data['casing']['grade'],
+        state:data['casing']['state']
+       
+       },
+       cementing:{
+        state:data['cementing']['state'],
+       },
+       section:{
+        intermediateHoleSize:data['section']['intermediateHoleSize'],
+        finalDepth:data['section']['finalDepth'],
+         }
+    });
+  
+  
+   
+  
+  
+  
+  
+   });
+   
+  
+  }
+  updateStage(){
+    
+    this.EditThirdStageForm= this.fb.group({
+      casing:this.fb.group({
+        weight:['', ],
+        grade:['', ],
+        state:['', ],
+       }),
+       cementing:this.fb.group({
+        state:['', ],
+       }),
+       section:this.fb.group({
+        intermediateHoleSize:['', ],
+        finalDepth:['', ],
+         })
+    });
+  
+  }
+ 
 errorMgmt(error: HttpErrorResponse) {
   let errorMessage = '';
   if (error.error instanceof ErrorEvent) {
@@ -68,11 +119,14 @@ onSubmit() {
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
-    return this.apiService.UpdateThirdStage(this.EditThirdStageForm.value,id).subscribe({
+     this.apiService.UpdateThirdStage(this.EditThirdStageForm.value,id).subscribe({
       error: (e) => {
         console.log(e);
       },
     });
+    return   window.location.reload();
+
   }
+
 }
 }

@@ -20,29 +20,76 @@ constructor(public fb: FormBuilder,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
-    this.mainForm();
   
 }
 ngOnInit(): void {
-  
-}
-mainForm() {
- 
+  this.updateStage()
+  this.getStage()
+
   this.EditSecondStageForm = this.fb.group({
-  casing:this.fb.group({
-    weight:['', ],
-    grade:['', ],
-    state:['', ],
-   }),
-   cementing:this.fb.group({
-    state:['', ],
-   }),
-   section:this.fb.group({
-    surfaceHoleSize:['', ],
-    finalDepth:['', ],
-   })
-});
+    casing:this.fb.group({
+      weight:['', ],
+      grade:['', ],
+      state:['', ],
+     }),
+     cementing:this.fb.group({
+      state:['', ],
+     }),
+     section:this.fb.group({
+      surfaceHoleSize:['', ],
+      finalDepth:['', ],
+     })
+  });
 }
+getStage(){
+  let id= this.actRoute.snapshot.paramMap.get('id2');
+  this.apiService.getSecondStage(id).subscribe((data) => {
+  
+    this.EditSecondStageForm.setValue({
+      casing:{
+        weight:data['casing']['weight'],
+        grade:data['casing']['grade'],
+        state:data['casing']['state']
+       
+       },
+       cementing:{
+        state:data['cementing']['state'],
+       },
+       section:{
+        surfaceHoleSize:data['section']['surfaceHoleSize'],
+        finalDepth:data['section']['finalDepth'],
+         }
+    });
+  
+  
+   
+  
+  
+  
+  
+   });
+   
+  
+  }
+  updateStage(){
+    
+    this.EditSecondStageForm= this.fb.group({
+      casing:this.fb.group({
+        weight:['', ],
+        grade:['', ],
+        state:['', ],
+       }),
+       cementing:this.fb.group({
+        state:['', ],
+       }),
+       section:this.fb.group({
+        surfaceHoleSize:['', ],
+        finalDepth:['', ],
+         })
+    });
+  
+  }
+  
 get myForm() {
   return this.EditSecondStageForm.controls;
 }
@@ -68,11 +115,13 @@ onSubmit() {
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
-    return this.apiService.UpdateSecondStage(this.EditSecondStageForm.value,id).subscribe({
+     this.apiService.UpdateSecondStage(this.EditSecondStageForm.value,id).subscribe({
       error: (e) => {
         console.log(e);
       },
     });
+    return   window.location.reload();
+
   }
 }
 }

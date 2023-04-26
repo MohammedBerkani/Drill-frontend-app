@@ -20,31 +20,80 @@ constructor(public fb: FormBuilder,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
-    this.mainForm();
+    
   
 }
 ngOnInit(): void {
-  
-}
-mainForm() {
- 
+  this.updateStage()
+  this.getStage()
+
   this.EditFirstStageForm = this.fb.group({
-  casing:this.fb.group({
-    weight:['', ],
-    grade:['', ],
-    state:['', ],
-   }),
-   cementing:this.fb.group({
-    state:['', ],
-   }),
-   section:this.fb.group({
-    ConductorHoleSize:['', ],
-    finalDepth:['', ],
-     })
-});
+    casing:this.fb.group({
+      weight:['', ],
+      grade:['', ],
+      state:['', ],
+     }),
+     cementing:this.fb.group({
+      state:['', ],
+     }),
+     section:this.fb.group({
+      ConductorHoleSize:['', ],
+      finalDepth:['', ],
+       })
+  });
+
 }
+
 get myForm() {
   return this.EditFirstStageForm.controls;
+}
+getStage(){
+let id= this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getFirstStage(id).subscribe((data) => {
+
+  this.EditFirstStageForm.setValue({
+    casing:{
+      weight:data['casing']['weight'],
+      grade:data['casing']['grade'],
+      state:data['casing']['state']
+     
+     },
+     cementing:{
+      state:data['cementing']['state'],
+     },
+     section:{
+      ConductorHoleSize:data['section']['ConductorHoleSize'],
+      finalDepth:data['section']['finalDepth'],
+       }
+  });
+
+
+ 
+
+
+
+
+ });
+ 
+
+}
+updateStage(){
+  
+  this.EditFirstStageForm = this.fb.group({
+    casing:this.fb.group({
+      weight:['', ],
+      grade:['', ],
+      state:['', ],
+     }),
+     cementing:this.fb.group({
+      state:['', ],
+     }),
+     section:this.fb.group({
+      ConductorHoleSize:['', ],
+      finalDepth:['', ],
+       })
+  });
+
 }
 errorMgmt(error: HttpErrorResponse) {
   let errorMessage = '';
@@ -68,15 +117,15 @@ onSubmit() {
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
-    return this.apiService.UpdateFirstStage(this.EditFirstStageForm.value,id).subscribe({
-      complete: () => {
-        console.log('stage successfully edited!'),
-          this.ngZone.run(() => this.router.navigate(['Stages']))
-      },
+    this.apiService.UpdateFirstStage(this.EditFirstStageForm.value,id).subscribe({
+     
       error: (e) => {
         console.log(e);
+
       },
     });
   }
+  return   window.location.reload();
+
 }
 }

@@ -21,28 +21,27 @@ constructor(public fb: FormBuilder,
   private ngZone: NgZone,
   private apiService: ApiService
   ,private actRoute: ActivatedRoute){
-    this.mainForm();
   
 }
 ngOnInit(): void {
-  
-}
-mainForm() {
- 
+this.updateStage()
+this.getStage()
   this.EditLastStageForm = this.fb.group({
-  casing:this.fb.group({
-    weight:['', ],
-    grade:['', ],
-    state:['', ],
-   }),
-   cementing:this.fb.group({
-    state:['', ],
-   }),
-   section:this.fb.group({
-    productionHoleSize:['', ],
-    finalDepth:['', ],
-   })
-});
+    casing:this.fb.group({
+      weight:['', ],
+      grade:['', ],
+      state:['', ],
+     }),
+     cementing:this.fb.group({
+      state:['', ],
+     }),
+     section:this.fb.group({
+      productionHoleSize:['', ],
+      finalDepth:['', ],
+     })
+  });
+  
+
 }
 get myForm() {
   return this.EditLastStageForm.controls;
@@ -61,7 +60,55 @@ errorMgmt(error: HttpErrorResponse) {
     return errorMessage;
   });
 }
-
+getStage(){
+  let id= this.actRoute.snapshot.paramMap.get('id2');
+  this.apiService.getLastStage(id).subscribe((data) => {
+  console.log(data)
+    this.EditLastStageForm.setValue({
+      casing:{
+        weight:data['casing']['weight'],
+        grade:data['casing']['grade'],
+        state:data['casing']['state']
+       
+       },
+       cementing:{
+        state:data['cementing']['state'],
+       },
+       section:{
+        productionHoleSize:data['section']['productionHoleSize'],
+        finalDepth:data['section']['finalDepth'],
+         }
+    });
+  
+  
+   
+  
+  
+  
+  
+   });
+   
+  
+  }
+  updateStage(){
+    
+    this.EditLastStageForm= this.fb.group({
+      casing:this.fb.group({
+        weight:['', ],
+        grade:['', ],
+        state:['', ],
+       }),
+       cementing:this.fb.group({
+        state:['', ],
+       }),
+       section:this.fb.group({
+        productionHoleSize:['', ],
+        finalDepth:['', ],
+         })
+    });
+  
+  }
+ 
 onSubmit() {
   this.submitted = true;
   if (!this.EditLastStageForm.valid) {
@@ -69,12 +116,14 @@ onSubmit() {
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
    
-    return this.apiService.UpdateLastStage(this.EditLastStageForm.value,id).subscribe({
+     this.apiService.UpdateLastStage(this.EditLastStageForm.value,id).subscribe({
       error: (e) => {
         console.log(e);
       },
     });
+    return   window.location.reload();
   }
+
 }
 }
 
