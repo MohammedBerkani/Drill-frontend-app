@@ -82,8 +82,8 @@ console.log(data)
       
         
       let url = `${this.baseUri}/admin/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
-       
-      return this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
+      this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
+      return  window.location.reload();
 
        
        

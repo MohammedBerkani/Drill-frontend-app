@@ -1,6 +1,8 @@
 export class SecondStage {
    _id:string
     projectId:string;
+    initialDate:Date
+
     casing:{
             weight:number,
             grade:string,

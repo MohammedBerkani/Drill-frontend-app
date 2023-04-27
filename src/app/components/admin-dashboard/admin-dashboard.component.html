@@ -12,7 +12,7 @@
       <tbody>
         <tr *ngFor="let project of Projects  "  >
           <td>{{project.number}}</td>
-          <td>{{project.ProjectProgress}}%</td>
+          <td>{{project.ProjectProgress*100}}%</td>
           <td>{{project.createdAt | date : "dd.MM.y"}}</td>
              
              <td class="text-center edit-block">

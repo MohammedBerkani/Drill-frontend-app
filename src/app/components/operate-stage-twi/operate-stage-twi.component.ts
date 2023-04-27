@@ -38,6 +38,8 @@ this.apiService.getSecondStage(id).subscribe((data) => {
 mainForm() {
  
   this.EditSecondStageForm = this.fb.group({
+    initialDate:['', ],
+    finalDate:['', ],
   casing:this.fb.group({
     state:['', ],
    }),

@@ -1,12 +1,56 @@
 <div class="row justify-content-center">
     <div class="col-md-4 register-employee">
       
-      <div class="card-body" *ngFor="let st of Stage">
+      <div class="card-body">
         <h2>Third Phase</h2>
-        <div *ngIf="st.previousFinishedStage == true ; else pending">
+        <div *ngIf="Stage?.previousFinishedStage == true ; else pending">
        
-        <div *ngIf="st.CompletedStage == false ; else hide">
+        <div *ngIf="Stage?.CompletedStage == false ; else hide">
+
         <form [formGroup]="EditThirdStageForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="Stage?.initialized == false ; else not" >
+            <h3>Initial Date</h3>
+            <label for="start">
+             Enter the Date:
+         </label>
+       
+         <input type="date" formControlName="initialDate"  useValueAsLocalDate
+             >
+       
+       </div>
+       <ng-template #not>
+                       
+         <h3>Initial Date</h3>
+         <label for="start">
+          Enter the Date:
+      </label>
+    
+      <input type="date" disabled useValueAsLocalDate
+          >
+   
+</ng-template> 
+       <div *ngIf="Stage?.section.isFinished== true && Stage?.casing.state=='completed'; else hideDate ">
+         <h3>Final Date</h3>
+         <label for="start">
+          Enter the Date:
+      </label>
+    
+      <input type="date" formControlName="finalDate"  useValueAsLocalDate
+          >
+    
+    </div>
+    <ng-template #hideDate>
+                       
+     <h3>Final Date</h3>
+     <label for="start">
+      Enter the Date:
+  </label>
+
+  <input type="date" disabled  useValueAsLocalDate
+      >
+
+</ng-template>    
+
           <div formGroupName="casing">
           
        <div>
@@ -31,9 +75,9 @@
           </div>
           <div formGroupName="section">
             <h3>Drilling Section</h3>
-            <div class="form-group" *ngFor="let st of Stage">
+            <div class="form-group" >
 
-              <span *ngIf="st.section.isFinished == true ; else able">
+              <span *ngIf="Stage?.section.isFinished == true ; else able">
                         
                 <h4>the drilling section is completed</h4>
                 <label for="inputNumber"  > Acheived Depth</label>

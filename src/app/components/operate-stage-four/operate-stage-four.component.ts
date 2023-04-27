@@ -39,6 +39,9 @@ readStage(){
 mainForm() {
  
   this.EditLastStageForm = this.fb.group({
+    initialDate:['', ],
+    finalDate:['', ],
+ 
   casing:this.fb.group({
     state:['', ],
    }),

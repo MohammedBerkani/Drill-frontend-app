@@ -39,6 +39,8 @@ this.apiService.getThirdStage(id).subscribe((data) => {
 mainForm() {
  
   this.EditThirdStageForm = this.fb.group({
+    initialDate:['', ],
+    finalDate:['', ],
   casing:this.fb.group({
     state:['', ],
    }),
