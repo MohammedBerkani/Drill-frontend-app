@@ -1,3 +1,5 @@
+<div *ngIf="Project?.length != 0  ; else hide" >
+
 <div class="container">
     <!-- Employee list -->
     <table class="table table-bordered">
@@ -32,3 +34,9 @@
       
     </div>
   </div>
+  </div>
+  
+<ng-template #hide>
+  <h3>Your assignment is pending</h3>                  
+  
+</ng-template>  

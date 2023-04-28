@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-operate-stage-four',
@@ -20,7 +21,8 @@ Stage:any
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
-  private apiService: ApiService
+  private apiService: ApiService,
+  private _location: Location
   ,private actRoute: ActivatedRoute){
     this.mainForm();
 this.readStage() 
@@ -78,8 +80,7 @@ onSubmit() {
   } else {
     
     let id = this.actRoute.snapshot.paramMap.get('id2');
-   
-    return this.apiService.UpdateLastStageByOp(this.EditLastStageForm.value,id).subscribe({
+    this.apiService.UpdateLastStageByOp(this.EditLastStageForm.value,id).subscribe({
 
       
       error: (e) => {
@@ -87,6 +88,7 @@ onSubmit() {
         console.log(e);
       },
     });
+    return this._location.back()
   }
 }
 }
