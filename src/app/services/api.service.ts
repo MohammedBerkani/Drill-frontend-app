@@ -10,6 +10,7 @@ import { SecondStage } from '../models/second-stage.model';
 import { LastStage } from '../models/last-stage.model';
 import { DrillOperator } from '../models/drill-operator.model';
 import { catchError, map, retry } from 'rxjs/operators';
+import { SupAdmin } from '../models/sup-admin.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,12 @@ addAdmin(data:any): Observable<Admin> {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
  
 }
+addSupAdmin(data:any):Observable<SupAdmin>{
+  let url = `${this.baseUri}/adminSup/register`;
+
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt));
+
+}
 
 // getProjectBySv(id): Observable<Project>{ console.log(id)
 //   let url = `${this.baseUri}/drillSupervisor/${id}/Dashboard/Project`;
@@ -47,6 +54,17 @@ addAdmin(data:any): Observable<Admin> {
 getProject(id): Observable<Project> {
   console.log(id)
   let url = `${this.baseUri}/admin/:id/Dashboard/Project/${id}`;
+
+    return this.http.get(url).pipe(  map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt));
+
+}
+
+getAdmin(id): Observable<Admin> {
+  console.log(id)
+  let url = `${this.baseUri}/admin/${id}/`;
 
     return this.http.get(url).pipe(  map((res: Response) => {
       return res || {};
@@ -79,6 +97,16 @@ getSupervisor(id){
 getProjects(id):Observable<Project>{
   console.log(id)
   let url = `${this.baseUri}/admin/${id}/Dashboard/`;
+
+    return this.http.get(url).pipe(map((res: Response) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt));
+
+}
+getAdmins():Observable<Admin>{
+  
+  let url = `${this.baseUri}/adminSup/Dashboard/`;
 
     return this.http.get(url).pipe(map((res: Response) => {
       return res || {};

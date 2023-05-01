@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-operate-stage-twi',
@@ -21,9 +20,9 @@ constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
   private apiService: ApiService,
-  private _location: Location
+  
  
-  ,private actRoute: ActivatedRoute){
+  private actRoute: ActivatedRoute){
     this.mainForm();
   this.readStage()
 }
@@ -78,14 +77,17 @@ onSubmit() {
     return false;
   } else {
     let id = this.actRoute.snapshot.paramMap.get('id2');
-   
-   this.apiService.UpdateSecondStageByOp(this.EditSecondStageForm.value,id).subscribe({
+    let id2 = this.actRoute.snapshot.paramMap.get('id');
+    this.apiService.UpdateSecondStageByOp(this.EditSecondStageForm.value,id).subscribe({
       error: (e) => {
         console.log(e);
       },
     });
     
-    return this._location.back()
+    return this.router.navigate([`/DrillOperator/${id2}/Dashboard/project/${id}/ProjectOperating`])
+    .then(() => {
+      window.location.reload();
+    });
 
   }
 }

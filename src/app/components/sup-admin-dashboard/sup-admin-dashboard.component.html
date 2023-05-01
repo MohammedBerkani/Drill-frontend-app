@@ -1,0 +1,46 @@
+<div  *ngFor="let ad of admins ">
+<div  *ngIf="ad.adminstration==true ; else hide" >
+    <table class="table table-bordered">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+           </tr>
+        </thead>
+        <tbody>
+          <tr   >
+            <td>{{ad.name}}</td>         
+            <td>{{ad.email}}</td>
+        <td>    <app-button (btnclick)="Dismiss(ad)" text="Unauthorize"></app-button>
+        </td> 
+    </tr>
+
+
+          
+        </tbody>
+      </table>
+    </div>
+    <ng-template #hide>
+      <table class="table table-bordered">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+           </tr>
+        </thead>
+        <tbody>
+          <tr   >
+            <td>{{ad.name}}</td>         
+            <td>{{ad.email}}</td>
+        <td>    <app-button (btnclick)="Assign(ad)" text="authorize"></app-button>
+        </td> 
+    </tr>
+
+
+          
+        </tbody>
+      </table>
+    </ng-template>  
+    
+
+</div>

@@ -67,7 +67,8 @@ Assign(operator:any){
         let url = `${this.baseUri}/drillSupervisor/${id_sup}/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
         this.http.patch(url, {operating:true}, { headers: this.headers }).subscribe();
         
-              return window.location.reload()
+               this.http.patch(url, {operating:true}, { headers: this.headers }).subscribe();
+              return  window.location.reload();  
         
   
          
@@ -83,10 +84,10 @@ Assign(operator:any){
        
       console.log(operator)
       let url = `${this.baseUri}/drillSupervisor/${id_sup}/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
-      this.http.patch(url, {operating:false}, { headers: this.headers }).subscribe()
-    
      
-      return  window.location.reload(); 
+        this.http.patch(url, {operating:false}, { headers: this.headers }).subscribe()
+      return  window.location.reload();
+      ; 
      
             
         

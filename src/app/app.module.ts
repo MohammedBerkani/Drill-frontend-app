@@ -39,6 +39,9 @@ import { OperateStageFourComponent } from './components/operate-stage-four/opera
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { ErrorInterceptorInterceptor } from './error-interceptor.interceptor';
+import { SupAdminComponent } from './components/sup-admin/sup-admin.component';
+import { SupAdminDashboardComponent } from './components/sup-admin-dashboard/sup-admin-dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { ErrorInterceptorInterceptor } from './error-interceptor.interceptor';
      OperateStageTwiComponent,
      OperateStageThreeComponent,
      OperateStageFourComponent,
-     MapComponent
+     MapComponent,
+     SupAdminComponent,
+     SupAdminDashboardComponent,
+     HomeComponent,
   ],
   imports: [
     BrowserModule,

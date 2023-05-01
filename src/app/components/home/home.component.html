@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drilling Home</title>
+   
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Start Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#home" class="logo">
+            <img src="img/logo.png" alt="" />
+          </a>
+          <nav>
+            <div class="menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <ul class="links">
+              <li><a href="#home">home</a></li>
+              <li><a href="#manager">drill manager</a></li>
+              <li><a href="#supervisor">drill supervisor</a></li>
+              <li><a href="#operator">drill operator</a></li>
+            </ul>
+          </nav>
+          <span class="language">
+            <span class="arabic">en</span>
+            <span class="english">en</span>
+          </span>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <!-- Start Landing -->
+    <section class="landing" id="home">
+      <img src="img/backgound.png" alt="" class="background" />
+      <div class="container">
+        <div class="landing-content">
+          <div class="info">
+            <h1>making a good feeling for our customers</h1>
+            <p>being an otako</p>
+            <button class="btn">read more</button>
+          </div>
+          <div class="image">
+            <img src="img/character.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Landing -->
+    <!-- Start Admin -->
+    <section class="admin workers" id="manager">
+      <div class="container">
+        <div class="admin-content">
+          <div class="info">
+            <h2>manager</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+              enim porro molestias dolores fugit necessitatibus repudiandae.
+            </p>
+            <div class="user-information">
+              <a href="#" class="link-user active">sign up </a>
+              <a href="#" class="link-user">login </a>
+            </div>
+          </div>
+          <div class="image">
+            <img src="img/manager.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Admin -->
+    <!-- Start Operator -->
+    <section class="operator workers" id="operator">
+      <div class="container">
+        <div class="admin-content">
+          <div class="info">
+            <h2>drill operator</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+              enim porro molestias dolores fugit necessitatibus repudiandae.
+            </p>
+            <div class="user-information">
+              <a href="#" class="link-user active">sign up </a>
+              <a href="#" class="link-user">login </a>
+            </div>
+          </div>
+          <div class="image">
+            <img src="img/operator.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Operator -->
+    <!-- Start Supervisor -->
+    <section class="supervsior workers" id="supervisor">
+      <div class="container">
+        <div class="admin-content">
+          <div class="info">
+            <h2>drill supervisor</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+              enim porro molestias dolores fugit necessitatibus repudiandae.
+            </p>
+            <div class="user-information">
+              <a href="#" class="link-user active">sign up </a>
+              <a href="#" class="link-user">login </a>
+            </div>
+          </div>
+          <div class="image">
+            <img src="img/supervisor.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Supervisor -->
+    <!-- Start Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="info">
+            <img src="img/logo.png" class="logo" alt="" />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perspiciatis, dolor delectus quam ex ad fuga nostrum adipisci eos
+              rerum tempore.
+            </p>
+          </div>
+          <div class="links">
+            <h3>links</h3>
+            <ul>
+              <li><a href="#home">home</a></li>
+              <li><a href="#manager">manager</a></li>
+              <li><a href="#supervisor">supervisor</a></li>
+              <li><a href="#operator">operator</a></li>
+            </ul>
+          </div>
+          <div class="user-information">
+            <a href="#" class="link-user active">sign up</a>
+            <a href="#" class="link-user">login</a>
+          </div>
+        </div>
+        <div class="copyright">
+          made with by (name of company) <span class="copy">&copy;</span>
+          <span class="date"></span>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <script type= "text/javascript">
+console.log("brii")
+// menu Btn In Mobile/Tablet Mode
+let menuBtn = document.querySelector(".menu");
+let navBarWindow = document.querySelector("header.links");
+menuBtn.onclick = function () {
+  this.classList.toggle("active");
+};
+
+document.onclick = (e) => {
+  e.stopPropagation();
+  if (
+    !e.target.classList.contains("links") &&
+    !e.target.parentElement.classList.contains("menu")
+  ) {
+    menuBtn.classList.remove("active");
+  }
+};
+
+// Add Year Auto
+let dateElement = document.querySelector(".date");
+let date = new Date().getFullYear();
+dateElement.innerHTML = date;
+
+// Add Background To Header When Scrolling
+let header = document.querySelector("header");
+window.onscroll = function () {
+  this.scrollY >= 50
+    ? header.classList.add("add-background")
+    : header.classList.remove("add-background");
+};
+
+// Change Language
+let language = document.querySelector(".language");
+language.onclick = () => {
+  localStorage.setItem("language", language.innerHTML);
+};
+
+
+    </script>
+  </body>
+</html>

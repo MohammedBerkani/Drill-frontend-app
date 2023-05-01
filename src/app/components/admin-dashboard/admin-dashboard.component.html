@@ -1,3 +1,5 @@
+<div *ngIf="admin?.adminstration==true ; else hide" >
+
 <div class="container">
     <!-- Employee list -->
     <table class="table table-bordered">
@@ -33,3 +35,8 @@
       
 
 </div>
+</div>
+<ng-template #hide>
+  <h3>Your authorization is pending</h3>                  
+  
+</ng-template>  
