@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class DrillOperatorDashboardComponent implements OnInit{
 Supervisor:any
   Project:any
-  constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) { 
+  constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) {
+     
  }
   
 ngOnInit(): void {

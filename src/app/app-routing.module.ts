@@ -13,13 +13,22 @@ import{  NewStagesComponent}from "./components/new-stages/new-stages.component"
 import{ ProjectStagesEditComponent }from "./components/project-stages-edit/project-stages-edit.component"
 import{ StagesOperatingComponent }from "./components/stages-operating/stages-operating.component"
 import { OperatingComponent } from './components/operating/operating.component';
+import {SupAdminComponent} from "./components/sup-admin/sup-admin.component"
+import {SupAdminDashboardComponent} from "./components/sup-admin-dashboard/sup-admin-dashboard.component"
+import {HomeComponent} from "./components/home/home.component"
+import {AdminLoginComponent} from "./components/admin-login/admin-login.component"
 
 const routes: Routes = [
   { path: 'adminReg', component:AdminRegComponent },
+  { path: 'adminlog', component:AdminLoginComponent },
   { path: 'admin/:id/Dashboard/newProject', component:ProjectComponent },
   { path: 'admin/:id1/Dashboard/editProject/:id2', component:EditProjectComponent},
+  { path: 'home', component:HomeComponent},
   
   { path: 'admin/:id/Dashboard', component:AdminDashboardComponent },
+  { path: 'adminSupReg', component:SupAdminComponent },
+  { path: 'adminSup/dashboard', component:SupAdminDashboardComponent },
+
   { path: 'DrillSupervisor/:id/Dashboard', component:DrillSupervisorDashboardComponent },
   { path: 'DrillSupervisor/:id/Dashboard/Project/:id2/Stages', component:ProjectStagesComponent },
   { path: 'DrillSupervisor/:id/Dashboard/Project/:id2/Stages/edit', component:ProjectStagesEditComponent },

@@ -32,9 +32,14 @@ export class ApiService {
 addAdmin(data:any): Observable<Admin> {
     let url = `${this.baseUri}/admin/register`;
 
-    return this.http.post(url, data).pipe(catchError(this.errorMgmt));
- 
+    return this.http.post(url, data).pipe(catchError(this.errorMgmt))
 }
+LoginAdmin(data:any): Observable<Admin> {
+  let url = `${this.baseUri}/admin/login`;
+
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt))
+}
+
 addSupAdmin(data:any):Observable<SupAdmin>{
   let url = `${this.baseUri}/adminSup/register`;
 

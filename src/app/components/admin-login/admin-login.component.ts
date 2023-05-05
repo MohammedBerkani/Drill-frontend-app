@@ -1,16 +1,16 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-admin-reg',
-  templateUrl: './admin-reg.component.html',
-  styleUrls: ['./admin-reg.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class AdminRegComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   private unsubscriber : Subject<void> = new Subject<void>();
 
   submitted = false
@@ -45,7 +45,7 @@ export class AdminRegComponent implements OnInit {
   
   mainForm() {
     this.adminForm = this.fb.group({
-      name: ['', [Validators.required]],
+      
       email: [
         '',
         [
@@ -64,9 +64,9 @@ export class AdminRegComponent implements OnInit {
     if (!this.adminForm.valid) {
       return false;
     } else {
-      return this.apiService.addAdmin(this.adminForm.value).subscribe((data)=>{
+      return this.apiService.LoginAdmin(this.adminForm.value).subscribe((data)=>{
        console.log(data)
-        this.admin=data['admin_cre']
+        this.admin=data['admin_log']
         localStorage.setItem('id_token', data['token']);
         this.ngZone.run(() => this.router.navigate(["admin",this.admin._id,"Dashboard"]));
       });

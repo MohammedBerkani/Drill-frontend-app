@@ -9,11 +9,8 @@ export class HomeComponent implements OnInit{
   myScriptElement: HTMLScriptElement;
 
   constructor(){
-     
-     this.myScriptElement = document.createElement("script");
     
-     document.body.appendChild(this.myScriptElement);}
+    }
 ngOnInit(): void {
-  console.log('SS')
 }
 }

@@ -42,6 +42,8 @@ import { ErrorInterceptorInterceptor } from './error-interceptor.interceptor';
 import { SupAdminComponent } from './components/sup-admin/sup-admin.component';
 import { SupAdminDashboardComponent } from './components/sup-admin-dashboard/sup-admin-dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { HomeComponent } from './components/home/home.component';
      SupAdminComponent,
      SupAdminDashboardComponent,
      HomeComponent,
+     AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,9 @@ import { HomeComponent } from './components/home/home.component';
    
   ],
   providers: [ApiService,
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true}  
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true} ,
+    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor , multi: true} ,
+
   ],
   bootstrap: [AppComponent]
 })
