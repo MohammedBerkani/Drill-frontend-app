@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class DrillSupervisorDashboardComponent implements OnInit {
   
 Project:any
 
-  constructor(private apiService: ApiService,private actRoute: ActivatedRoute,) { 
+  constructor(private apiService: ApiService,private actRoute: ActivatedRoute,private router: Router) { 
  }
   
 ngOnInit(): void {
@@ -26,6 +26,11 @@ readProject(id){
    this.Project = data;
 
   })    
+}
+Logout(){
+  localStorage.removeItem('id_token');
+ 
+  this.router.navigate(['adminlog']);
 }
 
 

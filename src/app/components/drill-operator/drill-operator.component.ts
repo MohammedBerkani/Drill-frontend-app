@@ -45,8 +45,8 @@ onSubmit() {
   } else {
     return this.apiService.addDrillOperator(this.DrillOpForm.value).subscribe((data)=>{
      
-      this.drillOperator=data
-      console.log(this.drillOperator)
+      this.drillOperator=data['operator_cre']
+        localStorage.setItem('id_token', data['token']);  
       this.ngZone.run(() => this.router.navigate(["DrillOperator",this.drillOperator._id,"Dashboard"]));
     });
   }

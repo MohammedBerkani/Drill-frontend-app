@@ -2,18 +2,7 @@
     <div class="col-md-4 register-employee">
       <!-- form card register -->
       <div class="card-body">
-        <form [formGroup]="DrillSpvForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="inputName">Name</label>
-            <input class="form-control" type="text" formControlName="name" />
-            <!-- error -->
-            <div
-              class="invalid-feedback"
-              *ngIf="submitted && myForm['name'].errors?.['required']"
-            >
-              Name is required.
-            </div>
-          </div>
+        <form [formGroup]="operatorForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="inputEmail3">Email</label>
             <input class="form-control" type="text" formControlName="email" />
@@ -44,7 +33,7 @@
             </div>
             <div class="form-group">
             <button class="btn btn-success btn-lg btn-block" type="submit">
-              Register
+             Login
             </button>
           </div>
         </form>
@@ -52,4 +41,4 @@
     </div>
     <!-- form card register -->
   </div>
-  
+  <p *ngIf="showError">You can't make changes or go back at this time.!</p>

@@ -40,6 +40,21 @@ LoginAdmin(data:any): Observable<Admin> {
   return this.http.post(url, data).pipe(catchError(this.errorMgmt))
 }
 
+LoginSupervisor(data:any): Observable<Admin> {
+  let url = `${this.baseUri}/drillSupervisor/login`;
+
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt))
+}
+LoginOperator(data:any): Observable<Admin> {
+  let url = `${this.baseUri}/adminSup/login`;
+
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt))
+}
+LoginSupAdmin(data:any): Observable<Admin> {
+  let url = `${this.baseUri}/admin/login`;
+
+  return this.http.post(url, data).pipe(catchError(this.errorMgmt))
+}
 addSupAdmin(data:any):Observable<SupAdmin>{
   let url = `${this.baseUri}/adminSup/register`;
 

@@ -44,9 +44,8 @@ drillSupervisor:any
       return false;
     } else {
       return this.apiService.addDrillSupervisor(this.DrillSpvForm.value).subscribe((data)=>{
-       
-        this.drillSupervisor=data
-        console.log(this.drillSupervisor)
+        this.drillSupervisor=data['supervisor_cre']
+        localStorage.setItem('id_token', data['token']);  
         this.ngZone.run(() => this.router.navigate(["DrillSupervisor",this.drillSupervisor._id,"Dashboard"]));
       });
     }
