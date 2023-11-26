@@ -1,57 +1,58 @@
-<div *ngIf="Project?.length != 0  ; else hide" >
-<div *ngFor="let pr of Project  ; ">
 <div class="container">
-    <!-- Employee list -->
-    <table class="table table-bordered">
-      <thead class="table-success">
+  <a [routerLink]="['profile']" class="user">
+    <i class="fa-solid fa-user"></i>
+   <span>{{ Supervisor?.name}}</span>
+  </a>
+
+  <div *ngIf="Project?.length != 0; else hide">
+    
+    <div *ngFor="let pr of Project">
+      <!-- Employee list -->
+      <table>
         <tr>
-          <th scope="col">Number</th>
-          <th scope="col">Determined Time</th>
-          <th scope="col">contractor</th>
-          <th scope="col">Cellar Depth</th>
-          <th scope="col">Well Profile</th>
-          <th scope="col">Target Reservoir</th>
-          <th scope="col">Target Formation</th>
-          <th scope="col">Target Tolerance Shape</th>
-          <th scope="col">Td Formation Depth</th>
-          
-        
+          <th>Number</th>
+          <th>Determined Time</th>
+          <th>contractor</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pr of Project  ; "  >
-         
-          <td>{{pr.number}}</td>
-          <td>{{pr.determinedTime}}</td>
-          <td>{{pr.basic_info.contractor}}</td>
-          <td>{{pr.basic_info.cellarDepth}}</td>
-          <td>{{pr.basic_info.wellProfile}}</td>
-          <td>{{pr.basic_info.targetReservoir}}</td>
-          <td>{{pr.basic_info.targetFormation}}</td>
-          <td>{{pr.basic_info.targetToleranceShape}}</td>
-          <td>{{pr.basic_info.TdFormationDepth}}</td>
-       
+        <tr *ngFor="let pr of Project">
+          <td>{{ pr.number }}</td>
+          <td>{{ pr.determinedTime }}</td>
+          <td>{{ pr.basic_info.contractor }}</td>
         </tr>
-        
-      </tbody>
-    </table>
-   
-
-    <div  *ngFor="let pr of Project  ; ">
-      <h3>Project Stages Space</h3>
-
-      <span class="projectStages" [routerLink]="['Project', pr._id,'Stages']">
-        <button type="button" class="btn btn-success btn-sm"> Project Stages Space</button>
-      </span>
-      
+        <tr>
+          <th>Cellar Depth</th>
+          <th>Well Profile</th>
+          <th>Target Reservoir</th>
+        </tr>
+        <tr *ngFor="let pr of Project">
+          <td>{{ pr.basic_info.cellarDepth +"m" }}</td>
+          <td>{{ pr.basic_info.wellProfile }}</td>
+          <td>{{ pr.basic_info.targetReservoir }}</td>
+        </tr>
+        <tr>
+          <th>Target Formation</th>
+          <th>Target Tolerance Shape</th>
+          <th>Td Formation Depth</th>
+        </tr>
+        <tr *ngFor="let pr of Project">
+          <td>{{ pr.basic_info.targetFormation }}</td>
+          <td>{{ pr.basic_info.targetToleranceShape }}</td>
+          <td>{{ pr.basic_info.TdFormationDepth }}</td>
+        </tr>
+      </table>
+      <div *ngFor="let pr of Project" class="no-projects transform">
+        <h3>Project Stages Space</h3>
+        <a [routerLink]="['Project', pr._id, 'Stages']" class="create">
+          Project Stages Space
+        </a>
+      </div>
+      <app-map class="map"></app-map>
     </div>
   </div>
-
-<app-map></app-map>
+  <ng-template #hide>
+    <div class="no-projects">
+      <h3 class="no-project-title">Drill engineer {{Supervisor?.name}},your assignment is pending</h3>
+      <a (click)="Logout()" class="logout">Logout</a>
+    </div>
+  </ng-template>
 </div>
-</div>
-<ng-template #hide>
-  <h3>Your assignment is pending</h3>                  
-  
-</ng-template>  
-<button (click)="Logout()" >Logout</button>

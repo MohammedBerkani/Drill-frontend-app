@@ -17,6 +17,13 @@ import {SupAdminComponent} from "./components/sup-admin/sup-admin.component"
 import {SupAdminDashboardComponent} from "./components/sup-admin-dashboard/sup-admin-dashboard.component"
 import {HomeComponent} from "./components/home/home.component"
 import {AdminLoginComponent} from "./components/admin-login/admin-login.component"
+import {OperatorLoginComponent} from "./components/operator-login/operator-login.component"
+import {SupervisorLoginComponent} from "./components/supervisor-login/supervisor-login.component"
+import {SupAdminLoginComponent} from "./components/sup-admin-login/sup-admin-login.component"
+import {AdminProfileComponent} from "./components/admin-profile/admin-profile.component"
+import {SupervisorProfileComponent} from "./components/supervisor-profile/supervisor-profile.component"
+import {SupAdminProfileComponent} from "./components/sup-admin-profile/sup-admin-profile.component"
+import {OperatorProfileComponent} from "./components/operator-profile/operator-profile.component"
 
 const routes: Routes = [
   { path: 'adminReg', component:AdminRegComponent },
@@ -26,10 +33,19 @@ const routes: Routes = [
   { path: 'home', component:HomeComponent},
   
   { path: 'admin/:id/Dashboard', component:AdminDashboardComponent },
-  { path: 'adminSupReg', component:SupAdminComponent },
-  { path: 'adminSup/dashboard', component:SupAdminDashboardComponent },
+  { path: 'admin/:id/Dashboard/profile', component:AdminProfileComponent },
 
+  { path: 'adminSupReg', component:SupAdminComponent },
+  { path: 'adminSup/:id/dashboard', component:SupAdminDashboardComponent },
+  { path: 'adminSup/:id/dashboard/profile', component:SupAdminProfileComponent },
+  
+  { path: 'drillSupervisorLogin', component:SupervisorLoginComponent },
+  { path: 'drillOperatorLogin', component:OperatorLoginComponent },
+  { path: 'supAdminLogin', component:SupAdminLoginComponent },
+ 
   { path: 'DrillSupervisor/:id/Dashboard', component:DrillSupervisorDashboardComponent },
+  { path: 'DrillSupervisor/:id/Dashboard/profile', component:SupervisorProfileComponent },
+
   { path: 'DrillSupervisor/:id/Dashboard/Project/:id2/Stages', component:ProjectStagesComponent },
   { path: 'DrillSupervisor/:id/Dashboard/Project/:id2/Stages/edit', component:ProjectStagesEditComponent },
   
@@ -40,6 +56,8 @@ const routes: Routes = [
   {path:'DrillOperatorReg',component:DrillOperatorComponent},
 
   { path: 'DrillOperator/:id/Dashboard', component:DrillOperatorDashboardComponent },
+  { path: 'DrillOperator/:id/Dashboard/profile', component:OperatorProfileComponent},
+
   { path: 'DrillOperator/:id/Dashboard/project/:id2/ProjectOperating', component:StagesOperatingComponent },
   { path: 'DrillOperator/:id/Dashboard/project/:id2/ProjectOperating/operate', component:OperatingComponent },
   

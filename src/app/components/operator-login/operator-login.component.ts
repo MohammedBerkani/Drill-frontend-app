@@ -67,7 +67,7 @@ export class OperatorLoginComponent {
       return this.apiService.LoginOperator(this.operatorForm.value).subscribe((data)=>{
        console.log(data)
         this.operator=data['operator_log']
-        localStorage.setItem('id_token', data['token']);
+        localStorage.setItem('id_token_op', data['token']);
         this.ngZone.run(() => this.router.navigate(["DrillOperator",this.operator._id,"Dashboard"]));
       });
     }

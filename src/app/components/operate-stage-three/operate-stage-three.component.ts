@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,7 +16,8 @@ Stage:any
   EditThirdStageForm:FormGroup
   opSelect="pending"
   opSelect2="pending"
- 
+  opComplete="completed"
+ StageTwo:any
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
@@ -24,11 +25,20 @@ constructor(public fb: FormBuilder,
  
   private actRoute: ActivatedRoute){
     this.mainForm();
+    this.readPreviousStage()
  this.readStage() 
 }
 ngOnInit(): void {
   
 }
+readPreviousStage(){
+  let id = this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getSecondStage(id).subscribe((data) => {
+  console.log(data)
+ this.StageTwo = data;
+})
+}
+
 readStage(){
   let id = this.actRoute.snapshot.paramMap.get('id2');
 this.apiService.getThirdStage(id).subscribe((data) => {
@@ -40,16 +50,16 @@ this.apiService.getThirdStage(id).subscribe((data) => {
 mainForm() {
  
   this.EditThirdStageForm = this.fb.group({
-    initialDate:['', ],
-    finalDate:['', ],
+    initialDate: ['', Validators.required],
+    finalDate: ['', Validators.required],
   casing:this.fb.group({
-    state:['', ],
+    state: ['',],
    }),
    cementing:this.fb.group({
-    state:['', ],
+    state: ['',],
    }),
    section:this.fb.group({
-    depthInProgress:['', ]
+    depthInProgress: ['', Validators.required]
    })
 });
 }

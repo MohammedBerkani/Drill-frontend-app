@@ -1,0 +1,299 @@
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffb93e 60%, #f39f0b 40.1%);
+}
+
+.container form {
+  padding: 20px;
+  width: 900px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.container form .row .col {
+  flex: 1 1 250px;
+}
+
+.container form .title {
+  font-size: 20px;
+  color: #333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.container form .inputBox {
+  margin: 15px 0;
+}
+
+.container form .inputBox span {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.container form .inputBox input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.container form .inputBox input:focus {
+  border: 1px solid #000;
+}
+
+.container form .flex {
+  display: flex;
+  gap: 15px;
+}
+
+.container form .flex .inputBox {
+  margin-top: 5px;
+}
+
+.container form .inputBox img {
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.container form .submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 17px;
+  background: #ffb93e;
+  color: #fff;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.container form .submit-btn:hover {
+  background: #f39f0b;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 900px;
+}
+.table > h3 {
+  margin: 20px 0;
+  font-size: 2rem;
+  color: #eee;
+}
+.table p {
+  font-size: 1.2rem;
+  color: #eee;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0 2px 15px rgba(64, 64, 64, 0.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin: auto;
+}
+td,
+th {
+  padding: 15px 20px;
+  text-align: center;
+}
+th {
+  background-color: #7b3e0f;
+  color: #fafafa;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+tr {
+  width: 100%;
+  background-color: #fafafa;
+  font-family: "Montserrat", sans-serif;
+}
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #333;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  z-index: 1;
+}
+.btn::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  z-index: -1;
+}
+.btn.remove::before {
+  background-color: #f44336;
+}
+.btn.edit::before {
+  background-color: #009688;
+}
+.btn:hover {
+  color: #eee;
+}
+.btn:hover::before {
+  width: 100%;
+}
+.btn-dismiss {
+  width: 100px;
+  margin: 20px auto;
+}
+/* No Projects Part */
+.no-projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* ======== New Project Box =========*/
+.no-project-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #eee;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+.no-projects .links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  margin-bottom: 20px;
+}
+.no-projects a.generate {
+  width: 120px;
+}
+.no-projects a {
+  display: block;
+  width: 100px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  height: 50px;
+  border: 1px solid #333;
+  cursor: pointer;
+  position: relative;
+  transition: 0.4s;
+  z-index: 1;
+  color: #7b3e0f;
+}
+.no-projects a.generate::before {
+  background-color: #7b3e0f;
+}
+.no-projects a.edit::before {
+  background-color: #009688;
+}
+.no-projects a::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.4s;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.no-projects a:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.no-projects a:hover {
+  color: #eee;
+  border-color: #eee;
+}
+
+/* Progress Circle */
+
+@keyframes growProgressBar {
+  0%,
+  33% {
+    --pgPercentage: 0;
+  }
+  100% {
+    --pgPercentage: var(--value);
+  }
+}
+
+@property --pgPercentage {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+div[role="progressbar"] {
+  --size: 9rem;
+  --fg: #7b3e0f;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      closest-side,
+      white 80%,
+      transparent 0 99.9%,
+      white 0
+    ),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) "%";
+}
+.progress {
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+}

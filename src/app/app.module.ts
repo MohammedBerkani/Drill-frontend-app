@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DateValueAccessor, DateValueAccessorModule } from 'angular-date-value-accessor';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,9 @@ import { LastStageComponent } from './components/last-stage/last-stage.component
 import { DrillOperatorComponent } from './components/drill-operator/drill-operator.component';
 import { DrillOperatorDashboardComponent } from './components/drill-operator-dashboard/drill-operator-dashboard.component';
 import { LocalDateValueAccessor, LocalDateValueAccessorModule } from 'angular-date-value-accessor';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatNativeDateModule } from "@angular/material/core";
 
 import { NewStagesComponent } from './components/new-stages/new-stages.component';
 import { ProjectStagesEditComponent } from './components/project-stages-edit/project-stages-edit.component';
@@ -44,7 +48,14 @@ import { SupAdminDashboardComponent } from './components/sup-admin-dashboard/sup
 import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
-
+import { SupervisorLoginComponent } from './components/supervisor-login/supervisor-login.component';
+import { OperatorLoginComponent } from './components/operator-login/operator-login.component';
+import { SupAdminLoginComponent } from './components/sup-admin-login/sup-admin-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { SupervisorProfileComponent } from './components/supervisor-profile/supervisor-profile.component';
+import { OperatorProfileComponent } from './components/operator-profile/operator-profile.component';
+import { SupAdminProfileComponent } from './components/sup-admin-profile/sup-admin-profile.component';
 @NgModule({
   declarations: [
    
@@ -82,6 +93,13 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
      SupAdminDashboardComponent,
      HomeComponent,
      AdminLoginComponent,
+     SupervisorLoginComponent,
+     OperatorLoginComponent,
+     SupAdminLoginComponent,
+     AdminProfileComponent,
+     SupervisorProfileComponent,
+     OperatorProfileComponent,
+     SupAdminProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,8 +108,12 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
     FormsModule,
     DateValueAccessor,DateValueAccessorModule,
     HttpClientModule,
-    LeafletModule
-   
+    LeafletModule  ,
+   MatNativeDateModule,
+   MatDatepickerModule,
+   BrowserAnimationsModule,
+   MatFormFieldModule,
+   MatProgressSpinnerModule
   ],
   providers: [ApiService,
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true} ,

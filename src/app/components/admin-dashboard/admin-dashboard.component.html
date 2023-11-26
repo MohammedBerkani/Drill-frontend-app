@@ -1,44 +1,88 @@
-<div *ngIf="admin?.adminstration==true ; else hide" >
-
 <div class="container">
-    <!-- Employee list -->
-    <table class="table table-bordered">
-      <thead class="table-success">
-        <tr>
-          <th scope="col">Number</th>
-          <th scope="col">Progress</th>
-          <th scope="col">Formulation Date</th>
-        
-         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let project of Projects  "  >
-          <td>{{project.number}}</td>
-          <td>{{project.ProjectProgress*100}}%</td>
-          <td>{{project.createdAt | date : "dd.MM.y"}}</td>
-             
-             <td class="text-center edit-block">
-                <span class="edit" [routerLink]="['editProject/', project._id]">
-                  <button type="button" class="btn btn-success btn-sm">Edit</button>
-                </span>
-                </td>
-            </tr>
-        
-      </tbody>
-    </table>
+  <div>
+   <a [routerLink]="['profile']" class="user">
+    <i class="fa-solid fa-user"></i>
+    <span>{{admin?.name}}</span>
+  </a>
   </div>
-<div>
-    <span class="createProject" routerLink="newProject"  routerLinkActive="active">
-        <h3>New Project Space</h3>
-        <button type="button" class="btn btn-success btn-sm">Create</button>
-      </span>
-      
-
+  <div *ngIf="admin?.adminstration == true; else hide">
+    <div *ngIf="Projects?.length != 0; else show">
+      <div class="content">
+        <table>
+          <tr>
+            <th>Number</th>
+            <th>Progress</th>
+            <th>Formulation Date</th>
+            <th>Edit</th>
+            <th>Remove</th>
+          </tr>
+          <tr *ngFor="let project of Projects">
+            <td>{{ project.number }}</td>
+            <td
+              [attr.data-progress]="project.ProjectProgress * 100 + '%'"
+              class="progress"
+            >
+              <span
+                class="progress-arrow"
+                [style.left]="project.ProjectProgress * 100 + 9 + '%'"
+              ></span>
+              <span
+                class="progress-text"
+                [style.left]="project.ProjectProgress * 100 + 7 + '%'"
+              >
+                {{ project.ProjectProgress * 100 + "%" }}
+              </span>
+              <span class="span-parent">
+                <span [attr.width]="project.ProjectProgress * 100 + '%'"></span>
+              </span>
+            </td>
+            <td>{{ project.createdAt | date : "dd.MM.y" }}</td>
+            <td>
+              <span [routerLink]="['editProject/', project._id]">
+                <button type="button" class="btn edit">Edit</button>
+              </span>
+            </td>
+            <td>
+              <button class="btn remove" (click)="deleteProject(project._id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+        <div class="create-new-one">
+          <h3 class="sub-title">New Project Space</h3>
+          <div class="links">
+            <a
+              routerLink="newProject"
+              routerLinkActive="active"
+              class="create-btn"
+              >Create</a
+            >
+            <a (click)="Logout()" class="logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #show>
+      <div class="no-projects">
+        <h2 class="no-project-title">There Is No Project! Create One</h2>
+        <div class="create-new-project-box">
+          <a
+            class="create-btn"
+            routerLink="newProject"
+            routerLinkActive="active"
+          >
+            Create
+          </a>
+          <a (click)="Logout()" class="logout">Logout</a>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #hide>
+    <div class="no-projects">
+      <h2 class="no-project-title">Manager {{admin?.name}} your authorization is pending</h2>
+      <a (click)="Logout()" class="logout">Logout</a>
+    </div>
+  </ng-template>
 </div>
-</div>
-<ng-template #hide>
-  <h3>Your authorization is pending</h3>                  
-  
-</ng-template>  
-<button (click)="Logout()" >Logout</button>
-<p *ngIf="showError">You can't make changes or go back at this time.!</p>

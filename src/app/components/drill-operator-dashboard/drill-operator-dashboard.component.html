@@ -1,42 +1,33 @@
-<div *ngIf="Project?.length != 0  ; else hide" >
-
 <div class="container">
+  <a [routerLink]="['profile']" class="user" >
+    <i class="fa-solid fa-user"></i>
+    <span>{{ Operator?.name}}</span>
+   </a>
+ 
+  <div *ngIf="Project?.length != 0; else hide">
     <!-- Employee list -->
-    <table class="table table-bordered">
-      <thead class="table-success">
-        <tr>
-          <th scope="col">Drill Superviser Name </th>
-          <th scope="col">Drill Superviser Email </th>
-        
-          
-        
-        </tr>
-        
-         
-        
-      </thead>
-      <tbody>
-         <tr *ngFor="let sp of Supervisor  ; "  >
-         
-          <td>{{sp.name}}</td>
-          <td>{{sp.email}}</td>
-         </tr>
-     
-      </tbody>
-      
-      </table>
-    <div  *ngFor="let pr of Project  ; ">
-     
-
-      <span class="projectStages" [routerLink]="[ 'project',pr._id ,'ProjectOperating']">
-        <button type="button" class="btn btn-success btn-sm"> Phases Monitoring</button>
-      </span>
-      
+    <table>
+      <tr>
+        <th scope="col">Drill Superviser Name</th>
+        <th scope="col">Drill Superviser Email</th>
+      </tr>
+      <tr *ngFor="let sp of Supervisor">
+        <td>{{ sp.name }}</td>
+        <td>{{ sp.email }}</td>
+      </tr>
+    </table>
+    <div *ngFor="let pr of Project" class="no-projects">
+      <a class="create" [routerLink]="['project', pr._id, 'ProjectOperating']">
+        Phases Monitoring
+      </a>
+      <a class="logout" (click)="Logout()">Logout</a>
     </div>
   </div>
-  </div>
-  
-<ng-template #hide>
-  <h3>Your assignment is pending</h3>                  
-  
-</ng-template>  
+  <ng-template #hide>
+    <div class="no-projects">
+      <h3>{{ Operator?.name }}!, Your assignment is pending</h3>
+     
+      <a class="logout" (click)="Logout()">Logout</a>
+    </div>
+  </ng-template>
+</div>

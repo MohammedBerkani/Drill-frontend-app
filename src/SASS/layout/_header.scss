@@ -1,0 +1,171 @@
+/* Start Header */
+@mixin mode-mobile-links($size) {
+  background-color: rgb(255 255 255 / 90%);
+  z-index: 23;
+  position: absolute;
+  flex-direction: column;
+  width: 70%;
+  left: 50%;
+  @include prefix(transform, translateX(-50%), webkit moz o);
+  top: -400px;
+  border-radius: 20px;
+  box-shadow: rgb(89 49 46 / 68%) 0px 3px 8px;
+  li {
+    width: 100%;
+    text-align: center;
+    a {
+      position: relative;
+      font-size: $size;
+      &::before {
+        left: 0;
+        top: 0;
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 100%;
+        background-color: $second-color;
+        z-index: -1;
+        @include prefix(transition, 0.4s, webkit moz o);
+      }
+      &:hover {
+        color: $white-color;
+      }
+      &:hover:before {
+        width: 100%;
+      }
+    }
+  }
+}
+header {
+  &.add-background {
+    background-color: $main-color;
+    a {
+      @include desktop {
+        color: $white-color;
+      }
+    }
+    .menu {
+      span {
+        background-color: $white-color;
+      }
+    }
+    .language {
+      color: $white-color;
+    }
+  }
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  @include prefix(transition, 0.4s, webkit moz o);
+  .header-content {
+    @extend %flex;
+    position: relative;
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+    img {
+      width: 100%;
+    }
+  }
+  nav {
+    flex: 1;
+    ul {
+      overflow: hidden;
+      @include prefix(transition, 0.4s, webkit moz o);
+      @include mobile {
+        @include mode-mobile-links(16px);
+      }
+      @include tablet {
+        @include mode-mobile-links(18px);
+      }
+      @extend %flex;
+      justify-content: flex-end;
+      padding-right: 20px;
+      a {
+        display: block;
+        padding: {
+          top: 25px;
+          bottom: 25px;
+          left: 10px;
+          right: 10px;
+        }
+        font: {
+          size: 20px;
+          weight: 500;
+        }
+        text-transform: capitalize;
+        color: $main-color;
+        @include prefix(transition, 0.4s, webkit moz o);
+        &:hover {
+          color: $second-color;
+        }
+      }
+    }
+  }
+  /* menu bars */
+  .menu {
+    @include mobile {
+      display: block;
+    }
+    @include tablet {
+      display: block;
+    }
+    @include desktop {
+      display: none;
+    }
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    span {
+      background-color: $main-color;
+      height: 3px;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    span:first-child {
+      top: 0;
+    }
+    span:nth-child(2) {
+      top: 6px;
+    }
+    span:last-child {
+      top: 12px;
+    }
+    &.active {
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:first-child,
+      span:last-child {
+        top: 6px;
+        background-color: $second-color;
+      }
+      span:first-child {
+        transform: rotate(45deg);
+      }
+      span:last-child {
+        transform: rotate(-45deg);
+      }
+      + .links {
+        top: 100px;
+      }
+    }
+  }
+  /* change language */
+  .language {
+    cursor: pointer;
+    @include prefix(transition, 0.4s, webkit moz o);
+    font: {
+      size: 20px;
+      weight: bold;
+    }
+    &:hover {
+      color: $second-color;
+    }
+  }
+}
+/* End Header */

@@ -67,7 +67,7 @@ export class SupervisorLoginComponent implements OnInit {
       return this.apiService.LoginSupervisor(this.supervisorForm.value).subscribe((data)=>{
        console.log(data)
         this.supervisor=data['supervisor_log']
-        localStorage.setItem('id_token', data['token']);
+        localStorage.setItem('id_token_sp', data['token']);
         this.ngZone.run(() => this.router.navigate(["DrillSupervisor",this.supervisor._id,"Dashboard"]));
       });
     }

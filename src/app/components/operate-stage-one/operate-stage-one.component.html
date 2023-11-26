@@ -1,129 +1,134 @@
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      
-      <div class="card-body" >
-        <h2>First Phase</h2>
+<div class="wrapper">
+  <div *ngIf="Stage?.CompletedStage == false; else hide">
+    <h2>first phase</h2>
+    <form [formGroup]="EditFirstStageForm" (ngSubmit)="onSubmit()">
+      <div class="input-box" *ngIf="Stage?.initialized == false; else not">
+        <label>initial Date</label>
+        <input type="date" formControlName="initialDate" useValueAsLocalDate />
+        <div
+        class="invalid-feedback"
+        *ngIf="submitted && myForm['initialDate'].errors?.['required']"
+      >
+        Initial Date is required
+      </div>
+   
+      </div>
 
-<div *ngIf="Stage?.CompletedStage == false ; else hide">        
-        <form [formGroup]="EditFirstStageForm" (ngSubmit)="onSubmit()">
-          
-            <div *ngIf="Stage?.initialized == false ; else not" >
-             <h3>Initial Date</h3>
-             <label for="start">
-              Enter the Date:
-          </label>
-        
-          <input type="date" formControlName="initialDate"  useValueAsLocalDate
-              >
+      <ng-template #not>
+        <div class="input-box">
+          <label>initial Date</label>
+          <input type="hidden"  [ngModel]="02-02-1222"  formControlName="initialDate"  />
+
+          <input type="date" disabled useValueAsLocalDate   />
         
         </div>
-        <ng-template #not>
-                        
-          <h3>Initial Date</h3>
-          <label for="start">
-           Enter the Date:
-       </label>
-     
-       <input type="date" disabled useValueAsLocalDate
-           >
-    
- </ng-template> 
-        <div *ngIf="Stage?.section.isFinished== true && Stage?.casing.state=='completed'; else hideDate ">
-          <h3>Final Date</h3>
-          <label for="start">
-           Enter the Date:
-       </label>
-     
-       <input type="date" formControlName="finalDate"  useValueAsLocalDate
-           >
-     
-     </div>
-     <ng-template #hideDate>
-                        
-      <h3>Final Date</h3>
-      <label for="start">
-       Enter the Date:
-   </label>
- 
-   <input type="date" disabled  useValueAsLocalDate
-       >
 
-</ng-template> 
-      
-     
-     
-
-        
-        
-
-        
-        
-        
-          <div formGroupName="casing">
-          
-       <div>
-        <h3>Casing</h3>
-    state:   <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending">pending</option>
-            <option value="completed" selected>completed</option>
-            </select>
-          </div>
-          </div>
-
-          <div formGroupName="cementing">
-            <h3>Cementing</h3>
-        <div>
-      state: <select formControlName="state" [(ngModel)]='opSelect2'>
-        
-            <option value="pending">pending</option>
-            <option value="completed" selected>completed</option>
-            </select>
-          </div>
-          
-          </div>
-          <div formGroupName="section">
-            <h3>Drilling Section</h3>
-            <div class="form-group">
-
-              <span *ngIf="Stage?.section.isFinished == true ; else able">
-                        
-                <h4>the drilling section is completed</h4>
-                <label for="inputNumber"  > Acheived Depth</label>
-            
-                        <input  class="form-control" type="number" disabled />
-              
-              
-              
-                      </span>
-                      <ng-template #able>
-                        
-                        <label for="inputNumber"  > Acheived Depth</label>
-            
-                        <input  class="form-control" type="number" formControlName="depthInProgress" />
-              
-               </ng-template>       
-                      </div>
-           
-          </div>
-  
+      </ng-template>
+      <div
+        class="input-box"
+        *ngIf="
+          Stage?.section.isFinished == true && Stage?.casing.state == 'completed';
+          else hideDate
+        "
+      >
+        <!-- <label>final date</label>
+        <input type="date" formControlName="finalDate" useValueAsLocalDate /> -->
+        <label>final date</label>
+        <input matInput [matDatepicker] ="picker"    min="{{ Stage?.initialDate | date : 'y-MM-dd' }}"
+        formControlName="finalDate"   useValueAsLocalDate   >
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+        <div
+        class="invalid-feedback"
+        *ngIf="submitted && myForm['finalDate'].errors?.['required']"
+      >
+        Final Date is required
+      </div>
    
-            <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+  
+      </div>
+      <ng-template #hideDate>
+        <div class="input-box">
+          <label>final date</label>
+          <input type="date" disabled useValueAsLocalDate />
+          <input type="hidden"  [ngModel]="02-02-1222"  formControlName="finalDate"  />
+
+        </div>
+      </ng-template>
+      <div class="input-box" formGroupName="casing" *ngIf="Stage?.casing.state == 'pending'== true; else complete">
+        <label>casing state</label>
+        <select formControlName="state" [(ngModel)]="opSelect"  *ngIf="Stage?.section.isFinished== true; else waiting">
+          <option value="pending">pending</option>
+          <option value="completed" selected>completed</option>
+        </select>
+        <ng-template #waiting>
+          <select formControlName="state" [(ngModel)]="opSelect" >
+            <option value="pending">pending</option>
+         
+          </select>          
+        </ng-template>
        
       </div>
-    
+      <ng-template #complete>
+        <div class="input-box" formGroupName="casing"  >
+          <label>casing state</label>
+          <select formControlName="state" [(ngModel)]="opComplete"  >
+            <option value="completed" >completed</option>
+          </select>
+         
+        </div>
+      </ng-template>
+     
+      <div class="input-box" formGroupName="cementing">
+        <label>cementing state</label>
+        <select formControlName="state" [(ngModel)]="opSelect2" *ngIf="Stage?.casing.state == 'completed'; else holding">
+          <option value="pending">pending</option>
+          <option value="completed" selected>completed</option>
+        </select>
+        <ng-template #holding>
+          <select formControlName="state" [(ngModel)]="opSelect2" >
+            <option value="pending">pending</option>
+         
+          </select>          
+        </ng-template>
+
       </div>
-      <ng-template #hide>
-        <h3>the stage is finished</h3>                  
-        
-  </ng-template>         
-  
-    </div>
-  <!-- form card register -->
+      <div
+        class="input-box"
+        formGroupName="section"
+        *ngIf="Stage?.section.isFinished == true; else able"
+      >
+        <label>Acheived Depth</label>
+        <input placeholder="Acheived Depth" type="number" disabled />
+        <input type="hidden"   [ngModel]="9"  formControlName="depthInProgress"  />
+
+      </div>
+      <ng-template #able>
+        <label>Acheived Depth</label>
+        <div class="input-box" formGroupName="section">
+          <input
+            type="number"
+            formControlName="depthInProgress"
+            placeholder="Enter The Achived Depth"
+            min="0"
+          />
+          <div
+          class="invalid-feedback"
+          *ngIf="submitted && myForm['section']['controls'].depthInProgress.errors?.['required']"
+        >
+     Progressed depth  is required
+        </div>
+     
+        </div>
+      </ng-template>
+      <div class="input-box button">
+        <input type="Submit" value="Operate" />
+      </div>
+    </form>
   </div>
-  
+  <ng-template #hide>
+    <div class="after-generated">the stage is finished</div>
+  </ng-template>
+</div>

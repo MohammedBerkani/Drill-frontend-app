@@ -20,7 +20,8 @@ export class MapComponent  implements AfterViewInit{
 
     this.map = L.map('map', {
       center: [ 28.0339, 1.6596 ],
-      zoom: 5
+      zoom: 5,
+  
     });
     
   }
@@ -40,10 +41,11 @@ export class MapComponent  implements AfterViewInit{
     console.log(id)
     this.apiService.recieveProjectForMap(id).subscribe((data) => {
   console.log(data)
-  const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  const tiles = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
     maxZoom: 18,
     minZoom: 3,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    
   });
   const icon = L.icon({
     iconUrl: 'https://res.cloudinary.com/rodrigokamada/image/upload/v1637581626/Blog/angular-leaflet/marker-icon.png',

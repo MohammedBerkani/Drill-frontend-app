@@ -1,72 +1,78 @@
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      
-      <div class="card-body"*ngFor="let pr of project">
-        <h2>First Phase</h2>
-        
-<div *ngIf="pr.firstStageGn== false ; else hide">        
-
-        <form [formGroup]="FirstStageForm" (ngSubmit)="onSubmit()">
-          <div formGroupName="casing">
-            <h3>Casing</h3>
-          <div class="form-group">
-            <label for="inputNumber"> weight</label>
-            <input class="form-control" type="number" formControlName="weight" />
-            <!-- error -->
-          
-          </div>
-          <div class="form-group">
-            <label for="input">grade</label>
-            <input class="form-control" type="text" formControlName="grade" />
-            <!-- error -->
-           </div><div>
-      state: <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending">pending</option>
-            </select>
-          </div>
-          </div>
-          <div formGroupName="cementing">
-            <h3>Cementing</h3>
-        <div>
-      state: <select formControlName="state" [(ngModel)]='opSelect2'>
-        
-            <option value="pending">pending</option>
-            </select>
-          </div>
-          
-          </div>
-          <div formGroupName="section">
-            <h3>Drilling Section</h3>
-            <div class="form-group">
-              <label for="inputNumber"> Conductor Hole Size</label>
-              <input class="form-control" type="number" formControlName="ConductorHoleSize" />
-              <!-- error -->
-            
-            </div>
-            <div class="form-group">
-              <label for="inputNumber"> Final Depth</label>
-              <input class="form-control" type="number" formControlName="finalDepth" />
-              <!-- error -->
-            
-            </div>
-           
-          </div>
-
-   
-            <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+<div class="wrapper" *ngFor="let pr of project">
+  <div *ngIf="pr.firstStageGn == false; else hide">
+    <h2>First Phase</h2>
+    <form [formGroup]="FirstStageForm" (ngSubmit)="onSubmit()">
+      <div class="input-box" formGroupName="casing">
+        <input
+          type="number"
+          placeholder="Enter The Weight (lb)"
+          formControlName="weight"
+          min="0"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && myForm['casing']['controls'].weight.errors?.['required']"
+        >
+          Weight is required
         </div>
-        <ng-template #hide>
-          <h3>the stage is generated</h3>                  
-          
-    </ng-template>  
       </div>
-    </div>
-    <!-- form card register -->
+      <div class="input-box" formGroupName="casing">
+        <input
+          placeholder="Enter The Grade"
+          type="text"
+          formControlName="grade"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted &&  myForm['casing']['controls'].grade.errors?.['required']"
+        >
+          grade is required
+        </div>
+      </div>
+      <div class="input-box" formGroupName="casing">
+        <select formControlName="state" [(ngModel)]="opSelect2">
+          <option value="pending">casing state is pending</option>
+        </select>
+      </div>
+      <div class="input-box" formGroupName="cementing">
+        <select formControlName="state" [(ngModel)]="opSelect2">
+          <option value="pending">cementing state is pending</option>
+        </select>
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Conductor Hole Size"
+          type="number"
+          formControlName="ConductorHoleSize"
+          min="0"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted &&  myForm['section']['controls'].ConductorHoleSize.errors?.['required']"
+        >
+          ConductorHoleSize is required
+        </div>
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Final Depth"
+          type="number"
+          formControlName="finalDepth"
+          min="0"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && myForm['section']['controls'].finalDepth.errors?.['required']"
+        >
+          finalDepth is required
+        </div>
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Generate" />
+      </div>
+    </form>
   </div>
-  
+  <ng-template #hide>
+    <div class="after-generated">first stage is generated</div>
+  </ng-template>
+</div>

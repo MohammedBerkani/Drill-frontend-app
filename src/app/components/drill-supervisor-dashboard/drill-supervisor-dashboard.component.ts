@@ -10,27 +10,39 @@ import { ApiService } from 'src/app/services/api.service';
 export class DrillSupervisorDashboardComponent implements OnInit {
   
 Project:any
-
+Supervisor:any
   constructor(private apiService: ApiService,private actRoute: ActivatedRoute,private router: Router) { 
  }
   
 ngOnInit(): void {
   let id = this.actRoute.snapshot.paramMap.get('id');
   this.readProject(id);
-
+this.readSupervisor(id)
 
 }
 readProject(id){
-  this.apiService.recieveProject(id).subscribe((data) => {
+  this.apiService.recievingProject(id).subscribe((data) => {
     console.log(data)
    this.Project = data;
 
   })    
 }
+readSupervisor(id){
+  this.apiService.findSupervisor(id).subscribe((data) => {
+    console.log(data)
+   this.Supervisor = data;
+  })    
+  
+}
+
 Logout(){
-  localStorage.removeItem('id_token');
+  if(window.confirm('Are sure you want to logout ?')){
+    localStorage.removeItem('id_token_sp');
  
-  this.router.navigate(['adminlog']);
+    this.router.navigate(['drillSupervisorLogin']);
+  
+   }
+
 }
 
 

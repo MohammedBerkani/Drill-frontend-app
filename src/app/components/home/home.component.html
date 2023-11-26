@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drilling Home</title>
-   
+
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
@@ -27,8 +27,8 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <a href="#home" class="logo">
-            <img src="img/logo.png" alt="" />
+          <a routerLink="/home" routerLinkActive="active" class="logo">
+            <img src="../../../assets/images/logo.jpg" alt="" />
           </a>
           <nav>
             <div class="menu">
@@ -36,38 +36,27 @@
               <span></span>
               <span></span>
             </div>
-            <ul class="links">
-              <li><a href="#home">home</a></li>
-              <li><a href="#manager">drill manager</a></li>
-              <li><a href="#supervisor">drill supervisor</a></li>
-              <li><a href="#operator">drill operator</a></li>
+            <ul>
+              <li><a routerLink="/home" routerLinkActive="active">home</a></li>
+              <li>
+                <a routerLink="/adminlog" routerLinkActive="active">manager</a>
+              </li>
+              <li>
+                <a routerLink="/drillSupervisorLogin" routerLinkActive="active"
+                  >supervisor</a
+                >
+              </li>
+              <li>
+                <a routerLink="/drillOperatorLogin" routerLinkActive="active"
+                  >operator</a
+                >
+              </li>
             </ul>
           </nav>
-          <span class="language">
-            <span class="arabic">en</span>
-            <span class="english">en</span>
-          </span>
         </div>
       </div>
     </header>
     <!-- End Header -->
-    <!-- Start Landing -->
-    <section class="landing" id="home">
-      <img src="img/backgound.png" alt="" class="background" />
-      <div class="container">
-        <div class="landing-content">
-          <div class="info">
-            <h1>making a good feeling for our customers</h1>
-            <p>being an otako</p>
-            <button class="btn">read more</button>
-          </div>
-          <div class="image">
-            <img src="img/character.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Landing -->
     <!-- Start Admin -->
     <section class="admin workers" id="manager">
       <div class="container">
@@ -75,16 +64,16 @@
           <div class="info">
             <h2>manager</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-              enim porro molestias dolores fugit necessitatibus repudiandae.
+             it's offer you the easiest way to formulate and monitor drilling project
+            , and handling the assignment of  engineers
             </p>
             <div class="user-information">
-              <a href="#" class="link-user active">sign up </a>
-              <a href="#" class="link-user">login </a>
+              <a routerLink="/adminReg" routerLinkActive="active" class="link-user active">sign up </a>
+              <a routerLink="/adminlog" routerLinkActive="active" class="link-user">login </a>
             </div>
           </div>
           <div class="image">
-            <img src="img/manager.svg" alt="" />
+            <img src="../../../assets/images/manager.svg" alt="" />
           </div>
         </div>
       </div>
@@ -97,16 +86,16 @@
           <div class="info">
             <h2>drill operator</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-              enim porro molestias dolores fugit necessitatibus repudiandae.
+       it's provide you with suitable interactivity interface to handle your requirement 
+       in the stages of the project
             </p>
             <div class="user-information">
-              <a href="#" class="link-user active">sign up </a>
-              <a href="#" class="link-user">login </a>
+              <a routerLink="/DrillOperatorReg" routerLinkActive="active" class="link-user active">sign up </a>
+              <a routerLink="/drillOperatorLogin" routerLinkActive="active" class="link-user">login </a>
             </div>
           </div>
           <div class="image">
-            <img src="img/operator.png" alt="" />
+            <img src="../../../assets/images/operator.png" alt="" />
           </div>
         </div>
       </div>
@@ -117,18 +106,18 @@
       <div class="container">
         <div class="admin-content">
           <div class="info">
-            <h2>drill supervisor</h2>
+            <h2>drill Engineer</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-              enim porro molestias dolores fugit necessitatibus repudiandae.
+             it's offer you a reliable plateform to construct your Stages and assign it to the operater 
+
             </p>
             <div class="user-information">
-              <a href="#" class="link-user active">sign up </a>
-              <a href="#" class="link-user">login </a>
+              <a routerLink="/DrillSupervisorReg" routerLinkActive="active" class="link-user active">sign up </a>
+              <a routerLink="/drillSupervisorLogin" routerLinkActive="active" class="link-user">login </a>
             </div>
           </div>
           <div class="image">
-            <img src="img/supervisor.png" alt="" />
+            <img src="../../../assets/images/supervisor.png" alt="" />
           </div>
         </div>
       </div>
@@ -139,35 +128,38 @@
       <div class="container">
         <div class="footer-content">
           <div class="info">
-            <img src="img/logo.png" class="logo" alt="" />
+            <img src="../../../assets/images/logo.jpg" class="logo" alt="" />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis, dolor delectus quam ex ad fuga nostrum adipisci eos
-              rerum tempore.
+              GWDC Chuanqing Drilling Engineering Company Limited (CCDC), subsidiary of China National Petroleum Corporation (CNPC), is China's largest oil and gas producer, as well as one of the world's major oilfield services providers and a globally reputed contractor in engineering construction.
             </p>
           </div>
           <div class="links">
             <h3>links</h3>
             <ul>
-              <li><a href="#home">home</a></li>
-              <li><a href="#manager">manager</a></li>
-              <li><a href="#supervisor">supervisor</a></li>
-              <li><a href="#operator">operator</a></li>
+              <li><a routerLink="/home" routerLinkActive="active">home</a></li>
+              <li>
+                <a routerLink="/adminlog" routerLinkActive="active">manager</a>
+              </li>
+              <li>
+                <a routerLink="/drillSupervisorlogin" routerLinkActive="active"
+                  >supervisor</a
+                >
+              </li>
+              <li>
+                <a routerLink="/drillOperatorlogin" routerLinkActive="active"
+                  >operator</a
+                >
+              </li>
             </ul>
           </div>
-          <div class="user-information">
-            <a href="#" class="link-user active">sign up</a>
-            <a href="#" class="link-user">login</a>
-          </div>
+        
         </div>
         <div class="copyright">
-          made with by (name of company) <span class="copy">&copy;</span>
+          made with by GWDC <span class="copy">&copy;</span>
           <span class="date"></span>
         </div>
       </div>
     </footer>
     <!-- End Footer -->
-
-   
   </body>
 </html>

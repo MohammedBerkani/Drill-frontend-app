@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+html {
+  &.arabic {
+    direction: rtl;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  color: $main-color;
+}
+.container {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  @include mobile {
+    width: 90%;
+  }
+  @include tablet {
+    width: 80%;
+  }
+  @include desktop {
+    width: 70%;
+  }
+}
+%flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

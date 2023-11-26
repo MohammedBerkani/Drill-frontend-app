@@ -1,197 +1,141 @@
-<div>
-<h3>  Project Stages Space</h3>
-<span class="projectStages" [routerLink]="['New']">
-    <button type="button" class="btn btn-success btn-sm"> generate Project Stages</button>
-  </span>
-</div>
-<div class="phases"  >
-<div >
-<h3>First Phase</h3>
-<table class="table table-bordered">
-    <thead class="table-success">
+<div class="container">
+  <div class="no-projects">
+    <h3 class="no-project-title">Project Stages Space</h3>
+    <div class="links" *ngIf="project?.operated == false">
+      <a [routerLink]="['New']" class="generate">generate</a>
+      <a [routerLink]="['edit']" class="edit">Edit</a>
+    </div>
+    <!-- <ng-template #edit>
+      <div class="links">
+        <a [routerLink]="['New']" class="generate">generate</a>
+        <a [routerLink]="['edit']" class="edit">Edit</a>
+      </div>
+    </ng-template> -->
+  </div>
+  <div>
+    <table>
       <tr>
-        <th scope="col">casing grade</th>
-        <th scope="col">casing weight</th>
-        <th scope="col">casing state</th>
-        <th scope="col">cementing state</th>
-        <th scope="col">section hole size</th>
-        <th scope="col">section final depth</th>
-        <th scope="col">section depth (inprogress)</th>
-        <th scope="col">initialization date </th>
-        <th scope="col">completion date </th>
-      
-      
+        <th>phases</th>
+        <th>casing grade</th>
+        <th>casing weight</th>
+        <th>casing state</th>
+        <th>cementing state</th>
+        <th>section hole size</th>
+        <th>section final depth</th>
+        <th>section depth (inprogress)</th>
+        <th>stage progress (inprogress)</th>
+
+        <th>initialization date</th>
+        <th>completion date</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr   >
-       
-        <td>{{StageOne?.casing.grade}}</td>
-        <td>{{StageOne?.casing.weight}}</td>
-        <td>{{StageOne?.casing.state}}</td>
-        <td>{{StageOne?.cementing.state}}</td>
-        <td>{{StageOne?.section.ConductorHoleSize}}</td>
-        <td>{{StageOne?.section.finalDepth}}</td>
-        <td>{{StageOne?.section.depthInProgress}}</td>
-        <td>{{StageOne?.initialDate | date : "dd.MM.y"}}</td>
-        <td>{{StageOne?.finalDate | date : "dd.MM.y"}}</td>
+      <tr>
+        <th>first</th>
+        <td>{{ StageOne?.casing.grade }}</td>
+        <td>{{ StageOne?.casing.weight +"lb" }}</td>
+        <td>{{ StageOne?.casing.state }}</td>
+        <td>{{ StageOne?.cementing.state }}</td>
+        <td>{{ StageOne?.section.ConductorHoleSize +"m" }}</td>
+        <td>{{ StageOne?.section.finalDepth +"m"}}</td>
+        <td>{{ StageOne?.section.depthInProgress +"m" }}</td>
+        <td>{{ (StageOne?.StageProgress * 100 ).toFixed(2) + "%"   }}</td>
+        <td>{{ StageOne?.initialDate | date : "dd.MM.y" }}</td>
+        <td>{{ StageOne?.finalDate | date : "dd.MM.y" }}</td>
       </tr>
-      
-    </tbody>
-  </table>
-</div>
-<div>
-    <h3>Second Phase</h3>
-    <table class="table table-bordered">
-        <thead class="table-success">
+      <tr>
+        <th>second</th>
+        <td>{{ StageTwo?.casing.grade }}</td>
+        <td>{{ StageTwo?.casing.weight +"lb" }}</td>
+        <td>{{ StageTwo?.casing.state }}</td>
+        <td>{{ StageTwo?.cementing.state }}</td>
+        <td>{{ StageTwo?.section.surfaceHoleSize +"m"}}</td>
+        <td>{{ StageTwo?.section.finalDepth +"m"}}</td>
+        <td>{{ StageTwo?.section.depthInProgress +"m"}}</td>
+        <td>{{ (StageTwo?.StageProgress * 100).toFixed(2) + "%" }}</td>
+
+        <td>{{ StageTwo?.initialDate | date : "dd.MM.y" }}</td>
+        <td>{{ StageTwo?.finalDate | date : "dd.MM.y" }}</td>
+      </tr>
+      <tr>
+        <th>third</th>
+        <td>{{ StageThree?.casing.grade }}</td>
+        <td>{{ StageThree?.casing.weight +"lb"}}</td>
+        <td>{{ StageThree?.casing.state }}</td>
+        <td>{{ StageThree?.cementing.state }}</td>
+        <td>{{ StageThree?.section.intermediateHoleSize+"m" }}</td>
+        <td>{{ StageThree?.section.finalDepth+"m" }}</td>
+        <td>{{ StageThree?.section.depthInProgress+"m" }}</td>
+        <td>{{ (StageThree?.StageProgress * 100).toFixed(2)  + "%" }}</td>
+
+        <td>{{ StageThree?.initialDate | date : "dd.MM.y" }}</td>
+        <td>{{ StageThree?.finalDate | date : "dd.MM.y" }}</td>
+      </tr>
+      <tr>
+        <th>last</th>
+        <td>{{ StageFour?.casing.grade }}</td>
+        <td>{{ StageFour?.casing.weight + "lb" }}</td>
+        <td>{{ StageFour?.casing.state }}</td>
+        <td>{{ StageFour?.cementing.state }}</td>
+        <td>{{ StageFour?.section.productionHoleSize+"m" }}</td>
+        <td>{{ StageFour?.section.finalDepth +"m"}}</td>
+        <td>{{ StageFour?.section.depthInProgress +"m"}}</td>
+        <td>{{ (StageFour?.StageProgress * 100).toFixed(2)  + "%" }}</td>
+
+        <td>{{ StageFour?.initialDate | date : "dd.MM.y" }}</td>
+        <td>{{ StageFour?.finalDate | date : "dd.MM.y" }}</td>
+      </tr>
+    </table>
+  </div>
+  <div
+    class="progress"
+   
+    role="progressbar"
+    aria-valuenow="65"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    style="--value: {{ math.round(project?.ProjectProgress * 100) }}"
+  ></div>
+  <div class="no-projects">
+    <h3 class="no-project-title">Operating Monitor</h3>
+    <div >
+      <div *ngIf="project?.operated == true; else show">
+        <div *ngFor="let operator of Operator" class="operated">
+          <p>it is operated by {{ operator.name }}</p>
+          <button
+            (click)="Dismiss(operator)"
+            class="btn remove"
+            value="Dismiss"
+          >
+            Dismiss
+          </button>
+        </div>
+      </div>
+      <ng-template #show >
+        <table *ngIf="DrillOperators?.length != 0; else operate">
           <tr>
-            <th scope="col">casing grade</th>
-            <th scope="col">casing weight</th>
-            <th scope="col">casing state</th>
-            <th scope="col">cementing state</th>
-            <th scope="col">section hole size</th>
-            <th scope="col">section final depth</th>
-            <th scope="col">section depth (inprogress)</th>
-            <th scope="col">initialization date </th>
-            <th scope="col">completion date </th>
-          
-                
-          
+            <th>DrillOperator Name</th>
+            <th>Email</th>
+            <th>Assignment</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr  >
-           
-            <td>{{StageTwo?.casing.grade}}</td>
-            <td>{{StageTwo?.casing.weight}}</td>
-            <td>{{StageTwo?.casing.state}}</td>
-            <td>{{StageTwo?.cementing.state}}</td>
-            <td>{{StageTwo?.section.ConductorHoleSize}}</td>
-            <td>{{StageTwo?.section.finalDepth}}</td>
-            <td>{{StageTwo?.section.depthInProgress}}</td>
-            <td>{{StageTwo?.initialDate | date : "dd.MM.y"}}</td>
-            <td>{{StageTwo?.finalDate | date : "dd.MM.y"}}</td>
-               
+          <tr *ngFor="let operator of DrillOperators">
+            <td>{{ operator.name }}</td>
+            <td>{{ operator.email }}</td>
+            <td>
+              <button
+                (click)="Assign(operator)"
+                class="btn edit"
+                value="Assign"
+              >
+                Assign
+              </button>
+            </td>
           </tr>
-          
-        </tbody>
-      </table>
-    </div><div>
-        <h3>Third Stage</h3>
-        <table class="table table-bordered">
-            <thead class="table-success">
-              <tr>
-                <th scope="col">casing grade</th>
-                <th scope="col">casing weight</th>
-                <th scope="col">casing state</th>
-                <th scope="col">cementing state</th>
-                <th scope="col">section hole size</th>
-                <th scope="col">section final depth</th>
-                <th scope="col">section depth (inprogress)</th>
-                <th scope="col">initialization date </th>
-                <th scope="col">completion date </th>
-              
-                        
-              
-              </tr>
-            </thead>
-            <tbody>
-              <tr   >
-               
-                <td>{{StageThree?.casing.grade}}</td>
-                <td>{{StageThree?.casing.weight}}</td>
-                <td>{{StageThree?.casing.state}}</td>
-                <td>{{StageThree?.cementing.state}}</td>
-                <td>{{StageThree?.section.ConductorHoleSize}}</td>
-                <td>{{StageThree?.section.finalDepth}}</td>
-                <td>{{StageThree?.section.depthInProgress}}</td>
-                <td>{{StageThree?.initialDate | date : "dd.MM.y"}}</td>
-                <td>{{StageThree?.finalDate | date : "dd.MM.y"}}</td>
-                       
-              </tr>
-              
-            </tbody>
-          </table>
-        </div><div>
-            <h3>Last Phase</h3>
-            <table class="table table-bordered">
-                <thead class="table-success">
-                  <tr>
-                    <th scope="col">casing grade</th>
-                    <th scope="col">casing weight</th>
-                    <th scope="col">casing state</th>
-                    <th scope="col">cementing state</th>
-                    <th scope="col">section hole size</th>
-                    <th scope="col">section final depth</th>
-                    <th scope="col">section depth (inprogress)</th>
-                    <th scope="col">initialization date </th>
-                    <th scope="col">completion date </th>
-                  
-                                
-                  
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr  >
-                   
-                    <td>{{StageFour?.casing.grade}}</td>
-                    <td>{{StageFour?.casing.weight}}</td>
-                    <td>{{StageFour?.casing.state}}</td>
-                    <td>{{StageFour?.cementing.state}}</td>
-                    <td>{{StageFour?.section.ConductorHoleSize}}</td>
-                    <td>{{StageFour?.section.finalDepth}}</td>
-                    <td>{{StageFour?.section.depthInProgress}}</td>
-                    <td>{{StageFour?.initialDate | date : "dd.MM.y"}}</td>
-                    <td>{{StageFour?.finalDate | date : "dd.MM.y"}}</td>
-                               
-                  </tr>
-                  
-                </tbody>
-              </table>
-            </div>
-            <span>
-                <span class="projectStages" [routerLink]="['edit']">
-                    <button type="button" class="btn btn-success btn-sm"> Edit</button>
-                  </span>
-                  
-            </span>
-            <div>
-              <h3>Project Progress</h3>
-              <span *ngFor="let project of project">
-                <p>the progress is {{project.ProjectProgress}} %</p>
-              </span>
-              
-            </div>
-            <div><h3> Operating Monitor</h3>
-    
-              <div *ngFor="let project of project"> 
-                
-              <div *ngIf="project.operated== true ">
-                <p *ngFor="let operator of Operator">   
-                  it  is  operated by {{operator.name}} <br>
-                  <app-button (btnclick)="Dismiss(operator)" text="Dismiss" ></app-button> 
-            
-                </p> 
-                     </div>
-              </div>
-            <table class="table table-bordered">
-              <thead class="table-success">
-                <tr>
-                  <th scope="col">DrillOperator Name</th>
-                  <th scope="col">Email</th>
-                 </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let operator of DrillOperators  "  >
-                  <td>{{operator.name}}</td>         
-                  <td>{{operator.email}}</td>
-              <td>    <app-button (btnclick)="Assign(operator)" text="Assign"></app-button>
-              </td>  </tr>
-                
-              </tbody>
-            </table>
+        </table>
+        <ng-template #operate >
+          <h3 class="no-project-title">there is no DrillOpertors available for now</h3>
+   
         
-
-
-
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
 </div>

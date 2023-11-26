@@ -67,8 +67,8 @@ export class SupAdminLoginComponent {
       return this.apiService.LoginSupAdmin(this.supAdminForm.value).subscribe((data)=>{
        console.log(data)
         this.supAdmin=data['supAdmin_cre']
-        localStorage.setItem('id_token', data['token']);
-        this.ngZone.run(() => this.router.navigate(["adminSup/dashboard"]));
+        localStorage.setItem('id_token_superAd', data['token']);
+        this.ngZone.run(() => this.router.navigate(["adminSup",this.supAdmin._id,"dashboard"]));
       });
     }
   }

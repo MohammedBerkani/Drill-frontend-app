@@ -12,7 +12,7 @@ export class SupAdminComponent  implements OnInit{
   submitted = false
   supAdminForm:FormGroup
   supAdmin:any
-   
+   SupAdmin:any
   constructor(public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
@@ -21,7 +21,16 @@ export class SupAdminComponent  implements OnInit{
     
   }
   ngOnInit(): void {
+    this.readSupAdmin()
+  
   }
+  readSupAdmin(){
+    this.apiService.getSupAdmin().subscribe((data) => {
+      console.log(data)
+     this.SupAdmin = data;
+    })   
+  }
+
   mainForm() {
     this.supAdminForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -46,8 +55,8 @@ export class SupAdminComponent  implements OnInit{
       return this.apiService.addSupAdmin(this.supAdminForm.value).subscribe((data)=>{
       
         this.supAdmin=data['supAdmin_cre']
-        localStorage.setItem('id_token', data['token']);  
-        this.ngZone.run(() => this.router.navigate(["adminSup/dashboard"]));
+        localStorage.setItem('id_token_superAd', data['token']);  
+        this.ngZone.run(() => this.router.navigate(["adminSup",this.supAdmin._id,"dashboard"]));
       });
     }
   }

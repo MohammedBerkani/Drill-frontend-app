@@ -1,0 +1,66 @@
+/* Btn Style */
+.btn {
+  @include tablet {
+    width: 180px;
+  }
+  @include mobile {
+    width: 150px;
+    font-size: 16px;
+  }
+  overflow: hidden;
+  width: 200px;
+  height: 50px;
+  @include prefix(border-radius, 20px, webkit moz o);
+  outline: none;
+  border: 0;
+  font: {
+    size: 18px;
+    weight: 500;
+  }
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  color: $main-color;
+  background: radial-gradient(circle, $second-color 32%, $white-color 100%);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  @include prefix(transition, 0.4s, webkit moz o);
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background-color: $second-color;
+    left: 0;
+    top: 0;
+    @include prefix(transition, 0.4s, webkit moz o);
+    z-index: -1;
+  }
+  &:hover::before {
+    width: 100%;
+  }
+}
+.link-user {
+  text-transform: capitalize;
+  margin-left: 10px;
+  width: 180px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fff;
+  color: $main-color;
+  @include prefix(border-radius, 20px, webkit moz o);
+  @include prefix(transition, 0.4s, webkit moz o);
+  &.active {
+    background-color: $second-color;
+  }
+  &:hover {
+    background-color: $second-color;
+  }
+  @include mobile {
+    width: 150px;
+  }
+  @include tablet {
+    width: 150px;
+  }
+}

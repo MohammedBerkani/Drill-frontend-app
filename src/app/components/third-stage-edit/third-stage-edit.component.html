@@ -1,64 +1,41 @@
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      
-      <div class="card-body">
-        <h2>Third Phase</h2>
-        <form [formGroup]="EditThirdStageForm" (ngSubmit)="onSubmit()">
-          <div formGroupName="casing">
-            <h3>Casing</h3>
-          <div class="form-group">
-            <label for="inputNumber"> weight</label>
-            <input class="form-control" type="number" formControlName="weight" />
-            <!-- error -->
-          
-          </div>
-          <div class="form-group">
-            <label for="input">grade</label>
-            <input class="form-control" type="text" formControlName="grade" />
-            <!-- error -->
-           </div><div>
-      state: <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending">pending</option>
-            </select>
-          </div>
-          </div>
-          <div formGroupName="cementing">
-            <h3>Cementing</h3>
-        <div>
-      state: <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending" >pending</option>
-            </select>
-          </div>
-          
-          </div>
-          <div formGroupName="section">
-            <h3>Drilling Section</h3>
-            <div class="form-group">
-              <label for="inputNumber">Intermediate Hole Size</label>
-              <input class="form-control" type="number" formControlName="intermediateHoleSize" />
-              <!-- error -->
-            
-            </div>
-            <div class="form-group">
-              <label for="inputNumber"> Final Depth</label>
-              <input class="form-control" type="number" formControlName="finalDepth" />
-              <!-- error -->
-            
-            </div>
-           
-          </div>
-
-   
-            <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+<div class="wrapper">
+  <div>
+    <h2>third Phase</h2>
+    <form [formGroup]="EditThirdStageForm" (ngSubmit)="onSubmit()">
+      <div class="input-box" formGroupName="casing">
+        <input
+          type="number"
+          placeholder="Enter The Weight"
+          formControlName="weight"
+          min="0"
+        />
       </div>
-    </div>
-    <!-- form card register -->
+      <div class="input-box" formGroupName="casing">
+        <input
+          placeholder="Enter The Grade"
+          type="text"
+          formControlName="grade"
+        />
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Intermediate Hole Size"
+          type="number"
+          formControlName="intermediateHoleSize"
+          min="0"
+        />
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Final Depth"
+          type="number"
+          formControlName="finalDepth"
+          min="0"
+        />
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Update" />
+      </div>
+    </form>
   </div>
-  
+</div>

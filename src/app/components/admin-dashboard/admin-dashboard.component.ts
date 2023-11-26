@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/models/project.model';
@@ -13,7 +13,8 @@ import { takeUntil } from 'rxjs/operators';
 export class AdminDashboardComponent implements OnInit {
   private unsubscriber : Subject<void> = new Subject<void>();
   showError: boolean = false;
- 
+  public getScreenWidth: any;
+
  admin:any
   Projects:any ;
   constructor(private apiService: ApiService,private actRoute: ActivatedRoute,  private router: Router,) { 
@@ -24,6 +25,8 @@ export class AdminDashboardComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.getScreenWidth = window.innerWidth;
+
     history.pushState(null, '');
 
     fromEvent(window, 'popstate')
@@ -37,15 +40,35 @@ export class AdminDashboardComponent implements OnInit {
     this.readAdmin(id)
 
   }
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+   
+  }
+
   ngOnDestroy(): void {
     this.unsubscriber.next();
     this.unsubscriber.complete();
   }
   Logout(){
-    localStorage.removeItem('id_token');
+    if(window.confirm('Are sure you want to logout ?')){
+      localStorage.removeItem('id_token_admin');
    
-    this.router.navigate(['adminlog']);
+      this.router.navigate(['adminlog']);
+    
+     }
+  
+    
   }
+  deleteProject(id){
+    console.log(id)
+    if(window.confirm('Are sure you  ?')){
+      this.apiService.deleteProject(id).subscribe(() => {
+      }
+      )
+     }
+  
+    }
   readAdmin(id){
     this.apiService.getAdmin(id).subscribe((data) => {
       console.log(data)

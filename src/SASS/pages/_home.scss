@@ -1,0 +1,145 @@
+/* Start Landing */
+$full: 100%;
+.landing {
+  height: 100vh;
+  position: relative;
+  .background {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: #{$full};
+    height: 500px;
+    z-index: -1;
+  }
+  .container,
+  .landing-content {
+    height: $full;
+  }
+  .landing-content {
+    @extend %flex;
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  .info {
+    width: 30%;
+    h1 {
+      font-size: 40px;
+      text-transform: capitalize;
+      color: $main-color;
+    }
+    p {
+      text-transform: capitalize;
+      margin: {
+        top: 10px;
+        bottom: 10px;
+      }
+      line-height: 1.7;
+      font-size: 20px;
+      color: rgba($main-color, 0.68);
+    }
+    @include mobile {
+      padding: {
+        top: 30px;
+      }
+      width: #{$full};
+      text-align: center;
+      p {
+        font-size: 18px;
+      }
+    }
+    @include tablet {
+      width: #{$full};
+      text-align: center;
+      h1 {
+        font-size: 30px;
+        width: 70%;
+        margin: auto;
+      }
+    }
+  }
+  .image {
+    @include tablet {
+      width: 60%;
+      margin-top: 30px;
+    }
+    @include mobile {
+      display: none;
+    }
+    width: $full / 2;
+    img {
+      width: $full;
+    }
+  }
+}
+/* End Landing */
+/* Start Workers */
+.workers {
+  padding: {
+    top: 40px;
+    bottom: 40px;
+  }
+  .admin-content {
+    @extend %flex;
+    @include mobile {
+      flex-direction: column;
+      text-align: center;
+    }
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  .info {
+    width: 45%;
+    text-transform: capitalize;
+    h2 {
+      letter-spacing: 1px;
+    }
+    p {
+      line-height: 1.6;
+      padding: {
+        top: 10px;
+        bottom: 10px;
+      }
+    }
+    .user-information {
+      @extend %flex;
+      width: fit-content;
+      @include mobile {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
+    }
+    @include mobile {
+      width: #{$full};
+      margin-bottom: 20px;
+      margin: {
+        left: auto;
+        right: auto;
+      }
+    }
+    @include tablet {
+      width: #{$full};
+      margin-bottom: 20px;
+    }
+  }
+  .image {
+    @include mobile {
+      width: #{$full};
+    }
+    @include tablet {
+      width: #{$full};
+    }
+    width: 50%;
+    img {
+      width: #{$full};
+    }
+  }
+  &.operator {
+    background-color: $main-color;
+    color: $white-color;
+  }
+}
+/* End Workers */

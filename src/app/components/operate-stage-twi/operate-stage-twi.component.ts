@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
@@ -13,9 +13,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class OperateStageTwiComponent implements OnInit {
 Stage:any
   submitted = false
+  StageOne:any
   EditSecondStageForm:FormGroup
   opSelect="pending"
   opSelect2="pending"
+  opComplete="completed"
+
 constructor(public fb: FormBuilder,
   private router: Router,
   private ngZone: NgZone,
@@ -24,10 +27,18 @@ constructor(public fb: FormBuilder,
  
   private actRoute: ActivatedRoute){
     this.mainForm();
+    this.readPreviousStage()
   this.readStage()
 }
 ngOnInit(): void {
   
+}
+readPreviousStage(){
+  let id = this.actRoute.snapshot.paramMap.get('id2');
+this.apiService.getFirstStage(id).subscribe((data) => {
+  console.log(data)
+ this.StageOne = data;
+})
 }
 readStage(){
   let id = this.actRoute.snapshot.paramMap.get('id2');
@@ -40,16 +51,16 @@ this.apiService.getSecondStage(id).subscribe((data) => {
 mainForm() {
  
   this.EditSecondStageForm = this.fb.group({
-    initialDate:['', ],
-    finalDate:['', ],
+    initialDate: ['', Validators.required],
+    finalDate: ['', Validators.required],
   casing:this.fb.group({
-    state:['', ],
+    state: ['', ],
    }),
    cementing:this.fb.group({
-    state:['', ],
+    state: ['', ],
    }),
    section:this.fb.group({
-    depthInProgress:['', ]
+    depthInProgress: ['', Validators.required]
    })
 });
 }
@@ -84,11 +95,10 @@ onSubmit() {
       },
     });
     
-    return this.router.navigate([`/DrillOperator/${id2}/Dashboard/project/${id}/ProjectOperating`])
-    .then(() => {
-      window.location.reload();
-    });
-
+     return this.router.navigate([`/DrillOperator/${id2}/Dashboard/project/${id}/ProjectOperating`])
+     .then(() => {
+       window.location.reload();
+     });
   }
 }
 }

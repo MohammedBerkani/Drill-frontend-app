@@ -48,10 +48,7 @@ export class AdminLoginComponent implements OnInit {
       
       email: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
+      
       ],
       password: ['', [Validators.required]],
       });
@@ -67,7 +64,7 @@ export class AdminLoginComponent implements OnInit {
       return this.apiService.LoginAdmin(this.adminForm.value).subscribe((data)=>{
        console.log(data)
         this.admin=data['admin_log']
-        localStorage.setItem('id_token', data['token']);
+        localStorage.setItem('id_token_admin', data['token']);
         this.ngZone.run(() => this.router.navigate(["admin",this.admin._id,"Dashboard"]));
       });
     }

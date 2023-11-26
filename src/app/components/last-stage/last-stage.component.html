@@ -1,71 +1,54 @@
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      
-      <div class="card-body"*ngFor="let pr of project">
-        <h2>Last Phase</h2>
-      
-        <div *ngIf="pr.lastStageGn== false ; else hide">        
-
-        <form [formGroup]="LastStageForm" (ngSubmit)="onSubmit()">
-          <div formGroupName="casing">
-            <h3>Casing</h3>
-          <div class="form-group">
-            <label for="inputNumber"> weight</label>
-            <input class="form-control" type="number" formControlName="weight" />
-            <!-- error -->
-          
-          </div>
-          <div class="form-group">
-            <label for="input">grade</label>
-            <input class="form-control" type="text" formControlName="grade" />
-            <!-- error -->
-           </div><div>
-      state: <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending">pending</option>
-            </select>
-          </div>
-          </div>
-          <div formGroupName="cementing">
-            <h3>Cementing</h3>
-        <div>
-      state: <select formControlName="state" [(ngModel)]='opSelect'>
-        
-            <option value="pending">pending</option>
-            </select>
-          </div>
-          
-          </div>
-          <div formGroupName="section">
-            <h3>Drilling Section</h3>
-            <div class="form-group">
-              <label for="inputNumber">Production Hole Size</label>
-              <input class="form-control" type="number" formControlName="productionHoleSize" />
-              <!-- error -->
-            
-            </div>
-            <div class="form-group">
-              <label for="inputNumber"> Final Depth</label>
-              <input class="form-control" type="number" formControlName="finalDepth" />
-              <!-- error -->
-            
-            </div>
-           
-          </div>
-
-   
-            <div class="form-group">
-            <input class="btn btn-success btn-lg btn-block" type="submit" value="submit
-            ">
-             </div>
-        </form>
+<div class="wrapper" *ngFor="let pr of project">
+  <div *ngIf="pr.lastStageGn == false; else hide">
+    <h2>last Phase</h2>
+    <form [formGroup]="LastStageForm" (ngSubmit)="onSubmit()">
+      <div class="input-box" formGroupName="casing">
+        <input
+          type="number"
+          placeholder="Enter The Weight(lb)"
+          formControlName="weight"
+          min="0"
+        />
       </div>
-      <ng-template #hide>
-        <h3>the stage is generated</h3>                  
-        
-  </ng-template>  
+      <div class="input-box" formGroupName="casing">
+        <input
+          placeholder="Enter The Grade"
+          type="text"
+          formControlName="grade"
+        />
       </div>
-    </div>
-    <!-- form card register -->
+      <div class="input-box" formGroupName="casing">
+        <select formControlName="state" [(ngModel)]="opSelect">
+          <option value="pending">casing state is pending</option>
+        </select>
+      </div>
+      <div class="input-box" formGroupName="cementing">
+        <select formControlName="state" [(ngModel)]="opSelect">
+          <option value="pending">cementing state is pending</option>
+        </select>
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Production Hole Size"
+          type="number"
+          formControlName="productionHoleSize"
+          min="0"
+        />
+      </div>
+      <div class="input-box" formGroupName="section">
+        <input
+          placeholder="Final Depth"
+          type="number"
+          formControlName="finalDepth"
+          min="0"
+        />
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Generate" />
+      </div>
+    </form>
   </div>
-  
+  <ng-template #hide>
+    <div class="after-generated">last stage is generated</div>
+  </ng-template>
+</div>

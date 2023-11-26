@@ -1,151 +1,67 @@
-<div class="phases">
-    <div>
-    <h3>First Phase</h3>
-    <table class="table table-bordered">
-        <thead class="table-success">
-          <tr>
-            <th scope="col">casing grade</th>
-            <th scope="col">casing weight</th>
-            <th scope="col">casing state</th>
-            <th scope="col">cementing state</th>
-            <th scope="col">section hole size</th>
-            <th scope="col">section final depth</th>
-            <th scope="col">section depth (inprogress)</th>
-            <th scope="col"> depth progress</th>
-            <th scope="col"> Stage progress</th>
-            
-          
-          </tr>
-        </thead>
-        <tbody>
-          <tr   >
-           
-            <td>{{StageOne?.casing.grade}}</td>
-            <td>{{StageOne?.casing.weight}}</td>
-            <td>{{StageOne?.casing.state}}</td>
-            <td>{{StageOne?.cementing.state}}</td>
-            <td>{{StageOne?.section.ConductorHoleSize}}</td>
-            <td>{{StageOne?.section.finalDepth}}</td>
-            <td>{{StageOne?.section.depthInProgress}}</td>
-            <td>{{StageOne?.section.depth*100}}% </td>
-            <td>{{StageOne?.StageProgress*100}}% </td>
-                 
-           
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-    <div>
-        <h3>Second Phase</h3>
-        <table class="table table-bordered">
-            <thead class="table-success">
-              <tr>
-                <th scope="col">casing grade</th>
-                <th scope="col">casing weight</th>
-                <th scope="col">casing state</th>
-                <th scope="col">cementing state</th>
-                <th scope="col">section hole size</th>
-                <th scope="col">section final depth</th>
-                <th scope="col">section depth (inprogress)</th>
-                <th scope="col"> depth progress</th>
-                <th scope="col"> Stage progress</th>
-              
-              </tr>
-            </thead>
-            <tbody>
-              <tr    >
-               
-                <td>{{StageTwo?.casing.grade}}</td>
-                <td>{{StageTwo?.casing.weight}}</td>
-                <td>{{StageTwo?.casing.state}}</td>
-                <td>{{StageTwo?.cementing.state}}</td>
-                <td>{{StageTwo?.section.ConductorHoleSize}}</td>
-                <td>{{StageTwo?.section.finalDepth}}</td>
-                <td>{{StageTwo?.section.depthInProgress}}</td>
-                <td>{{StageTwo?.section.depth*100}}% </td>
-                <td>{{StageTwo?.StageProgress*100}}% </td>
-                 
-              </tr>
-              
-            </tbody>
-          </table>
-        </div><div>
-            <h3>Third Stage</h3>
-            <table class="table table-bordered">
-                <thead class="table-success">
-                  <tr>
-                    <th scope="col">casing grade</th>
-                    <th scope="col">casing weight</th>
-                    <th scope="col">casing state</th>
-                    <th scope="col">cementing state</th>
-                    <th scope="col">section hole size</th>
-                    <th scope="col">section final depth</th>
-                    <th scope="col">section depth (inprogress)</th>
-                    <th scope="col"> depth progress</th>
-                    <th scope="col"> Stage progress</th>
-                  
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr  >
-                   
-                    <td>{{StageThree?.casing.grade}}</td>
-                    <td>{{StageThree?.casing.weight}}</td>
-                    <td>{{StageThree?.casing.state}}</td>
-                    <td>{{StageThree?.cementing.state}}</td>
-                    <td>{{StageThree?.section.ConductorHoleSize}}</td>
-                    <td>{{StageThree?.section.finalDepth}}</td>
-                    <td>{{StageThree?.section.depthInProgress}}</td>
-                    <td>{{StageThree?.section.depth*100}}% </td>
-                    <td>{{StageThree?.StageProgress*100}}% </td>
-                 
-                  </tr>
-                  
-                </tbody>
-              </table>
-            </div><div>
-                <h3>Last Phase</h3>
-                <table class="table table-bordered">
-                    <thead class="table-success">
-                      <tr>
-                        <th scope="col">casing grade</th>
-                        <th scope="col">casing weight</th>
-                        <th scope="col">casing state</th>
-                        <th scope="col">cementing state</th>
-                        <th scope="col">section hole size</th>
-                        <th scope="col">section final depth</th>
-                        <th scope="col">section depth (inprogress)</th>
-                        <th scope="col"> depth progress</th>
-                        <th scope="col"> Stage progress</th>
-                        
-                      
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr   >
-                       
-                        <td>{{StageFour?.casing.grade}}</td>
-                        <td>{{StageFour?.casing.weight}}</td>
-                        <td>{{StageFour?.casing.state}}</td>
-                        <td>{{StageFour?.cementing.state}}</td>
-                        <td>{{StageFour?.section.ConductorHoleSize}}</td>
-                        <td>{{StageFour?.section.finalDepth}}</td>
-                        <td>{{StageFour?.section.depthInProgress}}</td>
-                        <td>{{StageFour?.section.depth*100}}% </td>
-                        <td>{{StageFour?.StageProgress*100}}% </td>
-                 
-                      </tr>
-                      
-                    </tbody>
-                  </table>
-                </div>
-                <span>
-                    <span class="projectStages" [routerLink]="['operate']">
-                        <button type="button" class="btn btn-success btn-sm"> Operate</button>
-                      </span>
-                      
-                </span>
-    
-    
-    </div>
+<div class="container">
+  <table>
+    <tr>
+      <th>phases</th>
+      <th>casing grade</th>
+      <th>casing weight</th>
+      <th>casing state</th>
+      <th>cementing state</th>
+      <th>section hole size</th>
+      <th>section final depth</th>
+      <th>section depth (inprogress)</th>
+      <th>depth progress</th>
+      <th>Stage progress</th>
+    </tr>
+    <tr>
+      <th>first</th>
+      <td>{{ StageOne?.casing.grade }}</td>
+      <td>{{ StageOne?.casing.weight }}lb</td>
+      <td>{{ StageOne?.casing.state }}</td>
+      <td>{{ StageOne?.cementing.state }}</td>
+      <td>{{ StageOne?.section.ConductorHoleSize }}m</td>
+      <td>{{ StageOne?.section.finalDepth }}m</td>
+      <td>{{ StageOne?.section.depthInProgress }}m</td>
+      <td>{{ (StageOne?.section.depth * 100 ).toFixed(2)}}%</td>
+      <td>{{ (StageOne?.StageProgress * 100).toFixed(2)  }}%</td>
+    </tr>
+    <tr>
+      <th>second</th>
+      <td>{{ StageTwo?.casing.grade }}</td>
+      <td>{{ StageTwo?.casing.weight }}lb</td>
+      <td>{{ StageTwo?.casing.state }}</td>
+      <td>{{ StageTwo?.cementing.state }}</td>
+      <td>{{ StageTwo?.section.surfaceHoleSize }}m</td>
+      <td>{{ StageTwo?.section.finalDepth }}m</td>
+      <td>{{ StageTwo?.section.depthInProgress }}m</td>
+      <td>{{ (StageTwo?.section.depth * 100).toFixed(2) }}%</td>
+      <td>{{ (StageTwo?.StageProgress * 100).toFixed(2) }}%</td>
+    </tr>
+    <tr>
+      <th>third</th>
+      <td>{{ StageThree?.casing.grade }}</td>
+      <td>{{ StageThree?.casing.weight }}lb </td>
+      <td>{{ StageThree?.casing.state }}</td>
+      <td>{{ StageThree?.cementing.state }}</td>
+      <td>{{ StageThree?.section.intermediateHoleSize }}m</td>
+      <td>{{ StageThree?.section.finalDepth }}m</td>
+      <td>{{ StageThree?.section.depthInProgress }}m</td>
+      <td>{{ (StageThree?.section.depth * 100).toFixed(2) }}%</td>
+      <td>{{ (StageThree?.StageProgress * 100).toFixed(2) }}%</td>
+    </tr>
+    <tr>
+      <th>last</th>
+      <td>{{ StageFour?.casing.grade }}</td>
+      <td>{{ StageFour?.casing.weight }}lb</td>
+      <td>{{ StageFour?.casing.state }}</td>
+      <td>{{ StageFour?.cementing.state }}</td>
+      <td>{{ StageFour?.section.productionHoleSize }}m</td>
+      <td>{{ StageFour?.section.finalDepth }}m</td>
+      <td>{{ StageFour?.section.depthInProgress }}m</td>
+      <td>{{ (StageFour?.section.depth * 100).toFixed(2) }}%</td>
+      <td>{{ (StageFour?.StageProgress * 100).toFixed(2) }}%</td>
+    </tr>
+  </table>
+  <div class="no-projects">
+    <a class="generate" [routerLink]="['operate']">Operate</a>
+  </div>
+</div>

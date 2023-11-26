@@ -1,152 +1,202 @@
-<div class="row justify-content-center">
-    <div class="col-md-4 register-employee">
-      <!-- form card register -->
-      <div class="card-body">
-        <form [formGroup]="ProjectForm" (ngSubmit)="onSubmit()"  >
-          <div class="form-group">
-            <label >Number</label>
-            <input class="form-control" type="number" min="1" formControlName="number" />
-            <!-- error -->
-            <div
+<div class="container">
+  <form [formGroup]="ProjectForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col">
+        <div class="inputBox">
+          <span>number :</span>
+          <input
+            type="number"
+            min="1"
+            formControlName="number"
+            placeholder="Enter The Project Number"
+          />
+          <div
             class="invalid-feedback"
-            *ngIf="submitted && myForm['number'].errors?.['required']">
+            *ngIf="submitted && myForm['number'].errors?.['required']"
+          >
             Number is required
           </div>
-          </div>
-          <div class="form-group">
-            <label>Determined Time</label>
-            <input class="form-control" type="text" formControlName="determinedTime" />
-            <!-- error -->
-          
-           </div>
-           <h3>Essential Informations</h3>
-           
-          
-   
-
-         <div formGroupName="basic_info">
-    <label>contractor</label>
-    <input class="form-control" type="text" formControlName="contractor" />
-   <!-- error -->
-   <div
-            class="invalid-feedback"
+        </div>
+        <div class="inputBox">
+          <span>Determined Time :</span>
+          <input
+            type="text"
+            formControlName="determinedTime"
+            placeholder="Enter The Project Duration"
+          />
+        </div>
+        <div class="inputBox" formGroupName="basic_info">
+          <span>contractor :</span>
+          <input
+            type="text"
+            formControlName="contractor"
+            placeholder="Enter The Contractor"
+          />
+          <div
             *ngIf="submitted && myForm['basic_info']['controls'].contractor.errors?.['required']"
           >
             Contractor is required.
           </div>
-   <br>
- <label>Cellar Depth(m)</label>
-    <input class="form-control" type="number"  min="1" formControlName="cellarDepth" /><br>
-   <!-- error -->
-   <div
+        </div>
+        <div class="inputBox" formGroupName="basic_info">
+          <span>Cellar Depth(m) :</span>
+          <input
+            type="number"
+            min="1"
+            formControlName="cellarDepth"
+            placeholder="Enter The Depth"
+          />
+          <!-- error -->
+          <div
             class="invalid-feedback"
             *ngIf="submitted && myForm['basic_info']['controls'].cellarDepth.errors?.['required']"
           >
-           Cellar Depth is required.
+            Cellar Depth is required.
           </div>
-   <label>Well Profile</label>
-    <input class="form-control" type="text" formControlName="wellProfile" /><br>
-   <!-- error -->
-   <div
-            class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].wellProfile.errors?.['required']"
-          >
-            Well profile is required.
+        </div>
+        <div class="flex" formGroupName="basic_info">
+          <div class="inputBox">
+            <span>Target lontitude :</span>
+            <input
+              type="number"
+              formControlName="TargetLontitude"
+              placeholder="Enter Target Lontitude"
+            />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['basic_info']['controls'].TargetLontitude.errors?.['required']"
+            >
+              Target Lontitude required.
+            </div>
           </div>
-   <label> Target Reservoir</label>
-   <input class="form-control" type="text" formControlName="targetReservoir" />
-  <!-- error -->
-  <div
-            class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].targetReservoir.errors?.['required']"
-          >
-            Target Reservoir is required.
+          <div class="inputBox">
+            <span>Target latitude :</span>
+            <input
+              type="number"
+              formControlName="TargetLatitude"
+              placeholder="Enter Target latitude"
+            />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['basic_info']['controls'].TargetLatitude.errors?.['required']"
+            >
+              Target Latitude is required.
+            </div>
           </div>
-  <br>
-  <label>Target Formation</label>
-  <input class="form-control" type="text" formControlName="targetFormation" />
- <!-- error -->
- <div
+        </div>
+      </div>
+      <div class="col" formGroupName="basic_info">
+        <div class="inputBox">
+          <span>Target Formation :</span>
+          <input
+            type="text"
+            formControlName="targetFormation"
+            placeholder="Enter Target Formation"
+          />
+          <!-- error -->
+          <div
             class="invalid-feedback"
             *ngIf="submitted && myForm['basic_info']['controls'].targetFormation.errors?.['required']"
           >
             Target Formation is required.
           </div>
- <br>
-
- <label>Target Tolerance Shape</label>
- <input class="form-control" type="text" formControlName="targetToleranceShape" />
-<!-- error -->
-<div
+        </div>
+        <div class="inputBox">
+          <span>Target Tolerance Shape :</span>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="targetToleranceShape"
+            placeholder="Enter Target Tolerance Shape"
+          />
+          <!-- error -->
+          <div
             class="invalid-feedback"
             *ngIf="submitted && myForm['basic_info']['controls'].targetToleranceShape.errors?.['required']"
           >
-          Target Tolerance Shape is required.
+            Target Tolerance Shape is required.
           </div>
-<br>
-<label>Td Formation Depth</label>
-<input class="form-control" type="text" formControlName="TdFormationDepth" />
-<!-- error -->
-<div
+        </div>
+        <div class="inputBox">
+          <span>Td Formation Depth :</span>
+          <input
+            type="text"
+            formControlName="TdFormationDepth"
+            placeholder="Enter Td Formation Depth"
+          />
+          <!-- error -->
+          <div
             class="invalid-feedback"
             *ngIf="submitted && myForm['basic_info']['controls'].TdFormationDepth.errors?.['required']"
           >
-           Td Formation Depth is required.
+            Td Formation Depth is required.
           </div>
-<br>
-
-<label> Surface lontitude  </label>
-<input class="form-control" type="number" formControlName="SurfaceLontitude" />
-<!-- error -->
-<div
+        </div>
+        <div class="inputBox">
+          <span>Well Profile :</span>
+          <input
+            type="text"
+            formControlName="wellProfile"
+            placeholder="Enter The Well Profile"
+          />
+          <!-- error -->
+          <div
             class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].SurfaceLontitude.errors?.['required']"
+            *ngIf="submitted && myForm['basic_info']['controls'].wellProfile.errors?.['required']"
           >
-            Surface Lontitude required.
+            Well profile is required.
           </div>
-<br>
-<label>Surface latitude</label>
-<input class="form-control" type="number" formControlName="SurfaceLatitude" />
-<!-- error -->
-<div
-            class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].SurfaceLatitude.errors?.['required']"
-          >
-          Surface Latitude is required.
+        </div>
+        <div class="flex">
+          <div class="inputBox">
+            <span>Surface latitude :</span>
+            <input
+              type="number"
+              formControlName="SurfaceLatitude"
+              placeholder="Enter Surface latitude"
+            />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['basic_info']['controls'].SurfaceLatitude.errors?.['required']"
+            >
+              Surface Latitude is required.
+            </div>
           </div>
-<br>
-
-<label> Target lontitude </label>
-<input class="form-control" type="number" formControlName="TargetLontitude" />
-<!-- error -->
-<div
-            class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].TargetLontitude.errors?.['required']"
-          >
-            Target Lontitude required.
+          <div class="inputBox">
+            <span>Surface lontitude :</span>
+            <input
+              type="number"
+              formControlName="SurfaceLontitude"
+              placeholder="Enter Surface Lontitude"
+            />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['basic_info']['controls'].SurfaceLontitude.errors?.['required']"
+            >
+              Surface Lontitude required.
+            </div>
           </div>
-<br>
-<label>Target latitude</label>
-<input class="form-control" type="number" formControlName="TargetLatitude" />
-<!-- error -->
-<div
-            class="invalid-feedback"
-            *ngIf="submitted && myForm['basic_info']['controls'].TargetLatitude.errors?.['required']"
-          >
-          Target Latitude is required.
-          </div>
-
- </div>
-
-
-            <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-    <!-- form card register -->
-  </div>
-  
+    <div class="inputBox" formGroupName="basic_info">
+      <span>Target Reservoir :</span>
+      <input
+        type="text"
+        formControlName="targetReservoir"
+        placeholder="Enter Target Reservoir"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="submitted && myForm['basic_info']['controls'].targetReservoir.errors?.['required']"
+      >
+        Target Reservoir is required.
+      </div>
+    </div>
+    <input type="submit" value="Formulate New Project" class="submit-btn" />
+  </form>
+</div>

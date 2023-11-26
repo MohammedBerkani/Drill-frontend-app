@@ -1,46 +1,80 @@
-<div  *ngFor="let ad of admins ">
-<div  *ngIf="ad.adminstration==true ; else hide" >
-    <table class="table table-bordered">
-        <thead class="table-success">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-           </tr>
-        </thead>
-        <tbody>
-          <tr   >
-            <td>{{ad.name}}</td>         
-            <td>{{ad.email}}</td>
-        <td>    <app-button (btnclick)="Dismiss(ad)" text="Unauthorize"></app-button>
-        </td> 
+<div class="container" >
+
+<div *ngIf="getScreenWidth >767; else know" >
+  <a [routerLink]="['profile']" class="user"> 
+    <i class="fa-solid fa-user"></i>
+    <span>{{ SupAdmin?.name}}</span>
+  </a>
+ 
+  <table *ngIf="admins?.length != 0; else show">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Authority</th>
+      <th>Remove</th>
     </tr>
+    <tr *ngFor="let ad of admins">
+      <td>{{ ad.name }}</td>
+      <td>{{ ad.email }}</td>
 
+      <td *ngIf="ad.adminstration == true; else hide">
+        <button class="btn unauth" (click)="Dismiss(ad)">Unautorize</button>
+      </td>
 
-          
-        </tbody>
-      </table>
+      <ng-template #hide>
+        <td>
+          <button class="btn auth" (click)="Assign(ad)">Autorize</button>
+        </td>
+      </ng-template>
+      <td>
+        <button class="btn delete" (click)="Delete(ad)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <ng-template #show>
+    <div class="no-projects">
+      <h2 class="no-project-title">There is no subscribed managers for now!</h2>
+      <a (click)="Logout()" class="logout">Logout</a>
     </div>
-    <ng-template #hide>
-      <table class="table table-bordered">
-        <thead class="table-success">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-           </tr>
-        </thead>
-        <tbody>
-          <tr   >
-            <td>{{ad.name}}</td>         
-            <td>{{ad.email}}</td>
-        <td>    <app-button (btnclick)="Assign(ad)" text="authorize"></app-button>
-        </td> 
+ 
+  </ng-template>
+</div>
+<ng-template #know>
+  <table *ngIf="admins?.length != 0; else show">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
     </tr>
+    <tr *ngFor="let ad of admins">
+      <td>{{ ad.name }}</td>
+      <td>{{ ad.email }}</td>
+    </tr>
+    <tr>
+      <th>Authority</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let ad of admins">
+      <td *ngIf="ad.adminstration == true; else hide">
+        <button class="btn unauth" (click)="Dismiss(ad)">Unautorize</button>
+      </td>
 
-
-          
-        </tbody>
-      </table>
-    </ng-template>  
-    
-
+      <ng-template #hide>
+        <td>
+          <button class="btn auth" (click)="Assign(ad)">Autorize</button>
+        </td>
+      </ng-template>
+      <td>
+        <button class="btn delete" (click)="Delete(ad)">Delete</button>
+      </td>
+    </tr>
+  </table>
+  <ng-template #show>
+    <div class="no-projects">
+      <h2 class="no-project-title">There is no subscribed managers for now!</h2>
+      <a (click)="Logout()" class="logout">Logout</a>
+    </div>
+ 
+  </ng-template>
+</ng-template>
+  
 </div>

@@ -17,7 +17,7 @@ export class EditProjectComponent implements OnInit {
   DrillSupervisors:any
     ProjectForm:FormGroup
     baseUri: string = 'http://localhost:2000/api';
-    headers = new HttpHeaders().set('Content-Type', 'application/json');  
+    headers = new HttpHeaders().set('Content-Type', 'application/json');
   project:Project
   OneDriller:any
    constructor(public fb: FormBuilder,
@@ -26,7 +26,7 @@ export class EditProjectComponent implements OnInit {
     private http:HttpClient,
     private apiService: ApiService
     ,private actRoute: ActivatedRoute){
-    
+
   }
   ngOnInit(): void {
     this.ShowSupervisingMonitor()
@@ -44,78 +44,80 @@ export class EditProjectComponent implements OnInit {
       cellarDepth:['', ],
       wellProfile:['', ],
 
-      targetReservoir:['', ],    
+      targetReservoir:['', ],
       targetFormation:['', ],
-      targetToleranceShape:['', ],  
+      targetToleranceShape:['', ],
       TdFormationDepth:['', ],
       SurfaceLontitude:['',] ,
       SurfaceLatitude:['',] ,
       TargetLontitude:['',] ,
       TargetLatitude:['',] ,
-  
 
-        
-        
+
+
+
 
      })
   });
-   
 
-  
+
+
   }
- 
+
 getOneDriller(){
   let id= this.actRoute.snapshot.paramMap.get('id2');
 
   this.apiService.getDriller(id).subscribe((data) => {
 console.log(data)
-   this.OneDriller=data   
+   this.OneDriller=data
   });
  }
- 
- 
+
+
 
 
   Assign(driller:any){
+    if(window.confirm(`Are sure you wanna assign  ${driller.name} on this project` )){
     let id_S=driller._id
     let id_P = this.actRoute.snapshot.paramMap.get('id2');
-      
-        
+
+
       let url = `${this.baseUri}/admin/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
       this.http.patch(url, {supervising:true}, { headers: this.headers }).subscribe();
       return  window.location.reload();
 
-       
-       
-  
+
+
+    }
   }
   Dismiss(driller:any){
+    if(window.confirm(`Are sure you wanna assign  ${driller.name} on this project` )){
  
     let id_S=driller._id
     console.log(id_S)
     let id_P = this.actRoute.snapshot.paramMap.get('id2');
-       
+
       console.log(driller)
       let url = `${this.baseUri}/admin/Dashboard/SupervisingMonitor/${id_P}/${id_S}`;
       this.http.patch(url, {supervising:false}, { headers: this.headers }).subscribe()
-  
+
       return  window.location.reload();
-       
-        
-  
-  
-  
+
+
+
+}
+
   }
 
   ShowSupervisingMonitor(){
     this.apiService.getDrillSupervisor().subscribe((data) => {
       console.log(data)
      this.DrillSupervisors = data;
-    })    
+    })
   }
-  
+
   updateProject() {
-   
+
     this.ProjectForm = this.fb.group({
       number: ['', ],
 
@@ -125,18 +127,18 @@ console.log(data)
       cellarDepth:['', ],
       wellProfile:['', ],
 
-      targetReservoir:['', ],    
+      targetReservoir:['', ],
       targetFormation:['', ],
-      targetToleranceShape:['', ],  
+      targetToleranceShape:['', ],
       TdFormationDepth:['', ],
       SurfaceLontitude:['',] ,
       SurfaceLatitude:['',] ,
       TargetLontitude:['',] ,
       TargetLatitude:['',] ,
-  
 
-        
-        
+
+
+
 
      })
   });
@@ -150,35 +152,34 @@ console.log(data)
 
       console.log(data['basic_info']['cellarDepth'])
      this.ProjectForm.setValue({
-     
-   
+
+
        number:data['number'],
-       determinedTime:data['determinedTime'],   
+       determinedTime:data['determinedTime'],
       basic_info:{
        contractor:data['basic_info']['contractor'],
        cellarDepth:data['basic_info']['cellarDepth' ],
        wellProfile:data['basic_info']['wellProfile' ],
-       targetReservoir:data['basic_info']['targetReservoir' ],    
+       targetReservoir:data['basic_info']['targetReservoir' ],
 
        targetFormation:data['basic_info']['targetFormation' ],
-         targetToleranceShape:data['basic_info']['targetToleranceShape' ],  
+         targetToleranceShape:data['basic_info']['targetToleranceShape' ],
          TdFormationDepth:data['basic_info']['TdFormationDepth' ],
          SurfaceLontitude:data['basic_info']['SurfaceLontitude' ] ,
          SurfaceLatitude:data['basic_info']['SurfaceLatitude' ] ,
          TargetLontitude:data['basic_info']['TargetLontitude' ] ,
          TargetLatitude:data['basic_info']['TargetLatitude' ] ,
-     
-   
-   
-   
-   
+
+
+
+
+
    }
      });
      this.project=data
- 
     });
    }
-   
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -193,7 +194,7 @@ console.log(data)
       return errorMessage;
     });
   }
-  
+
   onSubmit() {
     this.submitted = true;
     if (!this.ProjectForm.valid) {
@@ -201,11 +202,11 @@ console.log(data)
     } else {
       let id2 = this.actRoute.snapshot.paramMap.get('id2');
       this.apiService.UpdateProject(this.ProjectForm.value,id2).subscribe({
-     
+
       });
 
       return  window.location.reload();
-       
+
        }
   }
   }

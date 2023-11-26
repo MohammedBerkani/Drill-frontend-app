@@ -67,7 +67,7 @@ export class AdminRegComponent implements OnInit {
       return this.apiService.addAdmin(this.adminForm.value).subscribe((data)=>{
        console.log(data)
         this.admin=data['admin_cre']
-        localStorage.setItem('id_token', data['token']);
+        localStorage.setItem('id_token_admin', data['token']);
         this.ngZone.run(() => this.router.navigate(["admin",this.admin._id,"Dashboard"]));
       });
     }
